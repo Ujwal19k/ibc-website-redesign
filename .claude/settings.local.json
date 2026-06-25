@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from PIL import Image; print\\('ok'\\)\")",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; try { $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\Sudha Solutions\\\\OneDrive - Sudha Solutions\\\\Work - Ujwal - Personal\\\\IBC\\\\Website\\\\Redesign Claude\\\\assets\\\\Client logos\\\\ongc.webp\"\\); Write-Output \"loaded: $\\($img.Width\\)x$\\($img.Height\\)\" } catch { Write-Output \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "Bash(where node *)",
+      "Bash(where npm *)",
+      "PowerShell($env:TEMP)",
+      "Read(//c/Users/SUDHAS~1/AppData/Local/Temp/webpconv/**)",
+      "Bash(node -e ' *)",
+      "Bash(node convert.js)",
+      "Bash(powershell -Command \"\\(Get-Content ibc-home-v2.html -Raw\\) -replace 'Client logos/\\(ongc|vedanta|reliance|aurobindo|srf\\)\\\\.webp', 'Client logos/\\\\$1.png' | Set-Content -NoNewline ibc-home-v2.html\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\Sudha Solutions\\\\AppData\\\\Local\\\\Temp\\\\webpconv2\")",
+      "Read(//c/Users/Sudha Solutions/AppData/Local/Temp/**)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node removebg.js)",
+      "Bash(rm -rf \"C:\\\\Users\\\\Sudha Solutions\\\\AppData\\\\Local\\\\Temp\\\\webpconv2\" 2>/dev/null; echo done)",
+      "Bash(grep -c 'ind-ic' \"C:\\\\Users\\\\Sudha Solutions\\\\OneDrive - Sudha Solutions\\\\Work - Ujwal - Personal\\\\IBC\\\\Website\\\\Redesign Claude\\\\ibc-home-v2.html\"; rm \"C:\\\\Users\\\\Sudha Solutions\\\\AppData\\\\Local\\\\Temp\\\\ind-icons.js\")",
+      "Bash(node check.js)",
+      "Bash(node crop.js)",
+      "Bash(node crop2.js)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:21st.dev)"
+    ]
+  }
+}

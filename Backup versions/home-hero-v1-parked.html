@@ -1,0 +1,109 @@
+<!--
+================================================================
+  PARKED: Home page hero banner — Version 1 (video split banner)
+  Parked on: 2026-06-25
+  Source file: ibc-home-v2.html
+================================================================
+
+  WHY THIS EXISTS
+  The client asked for changes to the home hero. This is the
+  ORIGINAL banner, saved verbatim so it can be restored later if
+  the client wants to go back to it. This is a parking file only —
+  it is not served/linked anywhere.
+
+  HOW TO RESTORE INTO ibc-home-v2.html
+  1. CSS  → paste BLOCK A back into the <style> block, in the hero
+            area (right after the .mobile-drawer rules). Also make
+            sure the .hero-blob rules in BLOCK A2 are present.
+  2. HTML → paste BLOCK B back as the <section class="hero"> …,
+            replacing whatever hero is live at the time.
+  3. JS   → paste BLOCK C back into the bottom <script> (the
+            rotating "cycle word" effect).
+
+  DEPENDENCIES (already global in ibc-home-v2.html — keep them):
+  - CSS vars: --navy, --red, --red-dark, --carbon
+  - Keyframes: why-blob-b / why-blob-r (used by the hero blobs)
+  - Buttons: .btn, .btn-primary, .btn-ghost
+  - Assets: assets/event-banner.mp4, assets/event-banner-poster.jpg
+================================================================
+-->
+
+
+<!-- ============ BLOCK A — CSS (goes in <style>) ============ -->
+<style>
+  .hero{position:relative;padding:0}
+  .hero-split{position:relative;overflow:hidden;min-height:780px;display:flex;align-items:center;background:var(--navy)}
+  .hero-split::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(650px 380px at 10% 100%,rgba(0,96,171,.38),transparent 60%),radial-gradient(520px 340px at 60% 0%,rgba(209,43,29,.4),transparent 58%),radial-gradient(420px 280px at 5% 15%,rgba(209,43,29,.22),transparent 60%)}
+  .hero-split::after{content:"";position:absolute;top:0;left:0;right:0;height:130px;z-index:2;pointer-events:none;background:linear-gradient(to bottom, rgba(10,37,64,0.92) 0%, rgba(10,37,64,0) 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);-webkit-mask-image:linear-gradient(to bottom, black 30%, transparent 100%);mask-image:linear-gradient(to bottom, black 30%, transparent 100%)}
+  .hero-text{position:relative;z-index:2;padding:90px 56px 64px 96px;max-width:840px;color:#fff}
+  .hero-text h1{color:#fff;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:500;letter-spacing:-.03em;line-height:1.04;margin-bottom:22px}
+  .cycle-word{color:var(--red);display:inline-block;transition:opacity .25s,transform .25s}
+  .cycle-word.fade{opacity:0;transform:translateY(6px)}
+  .hero-text p{color:rgba(255,255,255,.82);font-size:1.08rem;max-width:480px;margin-bottom:30px;line-height:1.55}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero .btn-primary{background:#fff;color:var(--carbon)}
+  .hero .btn-primary:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+  /* video box is tightly bound to the visible diagonal strip so object-position centers correctly within it */
+  .hero-img{position:absolute;top:0;bottom:0;left:37%;right:0;z-index:1;clip-path:polygon(31.75% 0,100% 0,100% 100%,0 100%)}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+  .hero-img-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,37,64,.5) 0%,transparent 45%)}
+  .hero-accent{position:absolute;inset:0;z-index:1;clip-path:polygon(55% 0,56.4% 0,36.4% 100%,35% 100%);background:linear-gradient(to bottom, var(--red) 0%, var(--red-dark) 25%, #ff6f43 40%, #ff6f43 60%, var(--red-dark) 75%, var(--red) 100%);background-size:100% 200%;animation:strip-flow 4s linear infinite;opacity:.95}
+  @keyframes strip-flow{0%{background-position:0 0}100%{background-position:0 -200%}}
+
+  @media(max-width:920px){
+    .hero-text{padding:150px 40px 52px}
+  }
+  @media(max-width:640px){
+    .hero-img,.hero-accent{display:none}
+    .hero-text{padding:140px 28px 48px;max-width:none}
+  }
+
+  /* ---- BLOCK A2 — hero blob styles (grouped with events blobs in the live file) ---- */
+  .hero-blob-b,.hero-blob-r{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+  .hero-blob-b{width:480px;height:480px;background:rgba(0,96,171,.38);top:-60px;left:-60px;z-index:1;animation:why-blob-b 5s ease-in-out infinite}
+  .hero-blob-r{width:380px;height:380px;background:rgba(209,43,29,.24);bottom:0;left:8%;z-index:1;animation:why-blob-r 6s ease-in-out infinite}
+</style>
+
+
+<!-- ============ BLOCK B — HTML (the <section class="hero">) ============ -->
+<section class="hero">
+  <div class="hero-split">
+    <div class="hero-blob-b"></div>
+    <div class="hero-blob-r"></div>
+    <div class="hero-img">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/event-banner-poster.jpg">
+        <source src="assets/event-banner.mp4" type="video/mp4">
+      </video>
+      <div class="hero-img-overlay"></div>
+    </div>
+    <div class="hero-accent"></div>
+    <div class="hero-text">
+      <span class="eyebrow on-dark">Trusted by India's enterprises &amp; PSUs since 2001</span>
+      <h1>Where industry leaders come to <span class="cycle-word" id="cycleWord">connect</span>.</h1>
+      <p>21+ years connecting decision-makers with industry experts through conferences, awards, and corporate training.</p>
+      <div class="hero-actions">
+        <a href="#events" class="btn btn-primary"><span>Explore Upcoming Events</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#contact" class="btn btn-ghost"><span>Partner With Us</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ BLOCK C — JS (rotating cycle word, goes in the bottom <script>) ============ -->
+<script>
+  (function(){
+    const words = ['connect','learn','grow','lead','decide'];
+    let wIdx = 0;
+    const el = document.getElementById('cycleWord');
+    if (!el) return;
+    setInterval(()=>{
+      el.classList.add('fade');
+      setTimeout(()=>{
+        wIdx = (wIdx+1) % words.length;
+        el.textContent = words[wIdx];
+        el.classList.remove('fade');
+      }, 250);
+    }, 2200);
+  })();
+</script>

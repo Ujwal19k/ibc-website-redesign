@@ -1,0 +1,41 @@
+/* ============================================================
+   Shared subpage hero banner — single source of truth.
+   Linked by about2.html, service.html (and future subpages).
+   Only the breadcrumb text, <h1>, <p>, and image differ per page.
+   Keep all hero styling here so subpage banners never drift.
+   ============================================================ */
+
+.hero{position:relative;padding:0;margin:0}
+
+/* Fixed height so every subpage hero is identical regardless of copy */
+.hero-card{position:relative;border-radius:0;overflow:hidden;height:530px;display:flex;align-items:stretch;
+  background:linear-gradient(135deg,#163b5e,#0A2540)}
+
+/* top fade so the fixed header reads cleanly over the banner */
+.hero-card::before{content:"";position:absolute;top:0;left:0;right:0;height:130px;z-index:1;pointer-events:none;background:linear-gradient(to bottom, rgba(10,37,64,0.92) 0%, rgba(10,37,64,0) 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);-webkit-mask-image:linear-gradient(to bottom, black 30%, transparent 100%);mask-image:linear-gradient(to bottom, black 30%, transparent 100%)}
+
+/* Moving gradient blobs */
+.hero-blob-b, .hero-blob-r{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.hero-blob-b{width:600px;height:600px;background:rgba(0,96,171,.45);top:-120px;right:-100px;animation:hero-blob-b 4s ease-in-out infinite}
+.hero-blob-r{width:500px;height:500px;background:rgba(209,43,29,.22);bottom:-100px;left:-80px;animation:hero-blob-r 4.9s ease-in-out infinite}
+@keyframes hero-blob-b{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-140px,80px) scale(1.12)}66%{transform:translate(-60px,160px) scale(0.92)}}
+@keyframes hero-blob-r{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(160px,-80px) scale(1.1)}66%{transform:translate(80px,-160px) scale(0.9)}}
+
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:stretch;width:100%;max-width:var(--maxw,1200px);margin:0 auto;height:100%;padding:120px 40px 48px 60px}
+.hero-inner{color:#fff;display:flex;flex-direction:column;justify-content:center}
+.hero-crumb{display:flex;align-items:center;gap:8px;font-size:.86rem;color:rgba(255,255,255,.55);margin-bottom:18px}
+.hero-crumb a{color:rgba(255,255,255,.85);font-weight:500}
+.hero-crumb a:hover{color:#fff}
+.hero-crumb .current{color:rgba(255,255,255,.85);font-weight:500}
+.hero h1{color:#fff;font-size:clamp(2.1rem,4.2vw,3rem);font-weight:500;letter-spacing:-.035em;line-height:1.08;margin-bottom:16px}
+.hero p{font-size:1.06rem;color:rgba(255,255,255,.86);max-width:560px;line-height:1.55}
+
+/* image fills its column at the banner's fixed height */
+.hero-visual{width:100%;height:100%;border-radius:16px;overflow:hidden}
+.hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+
+@media(max-width:780px){
+  .hero-card{height:auto;min-height:304px}
+  .hero-grid{grid-template-columns:1fr;padding:100px 28px 40px}
+  .hero-visual{display:none}
+}

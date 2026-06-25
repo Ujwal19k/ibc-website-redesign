@@ -1,0 +1,33 @@
+- [x] Integrate document pointermove event listener to target .journey-card
+- [x] Configure ::before and ::after pseudo-elements on .journey-card for border-glow masks
+- [x] Verify mouse spotlight tracking works smoothly on hover
+- [x] Reduce beam widths to 0.5% and set repeat cycle to 40% in the Mission/Vision section background
+- [x] Lower blur radius to 20px and set opacity to 0.2 for optimal visibility and definition
+- [x] Add back grid pattern overlay with extended center-transparent radial mask (45% transparent center, 80% opaque edges)
+- [x] Update About page hero banner image src to about_hero.png
+- [x] Swap WHO WE ARE visual and accordion images to who_1.jpg and who_2.jpg
+- [x] Increase Mission/Vision card heading font size to 1.4rem (approx +3.2px) for visual improvement
+- [x] Add floating, animated blue and red blobs to the About page hero banner background
+- [x] Add subtle moving gradient animation to the highlighted metrics ticker in about2.html
+- [x] Fix unequal spacing between text items and separator stars in the metrics ticker in about2.html
+- [x] Change btn-outline-dark hover state to a brand red background, border, and glow
+- [x] Reduce vertical white space between marquee and CTA sections
+- [x] Speed up the About page hero banner background blobs motion (reduced durations to 4.5s and 5.5s)
+- [x] Remove color-changing hover state from industry marquee pills
+- [x] Swap the Mission card image to mission.png
+- [x] Swap the Vision card image to vision.png
+- [x] Synchronize footer social media SVG icons between Home and About page
+- [x] Create a dynamic shared footer script components/footer.js to prevent future drift
+- [x] Generate custom banner and tab images for the Services page
+- [x] Create the service.html detail page with interactive tab panel switcher, deep hash routing, and events covered grid
+- [x] Update navigation links in ibc-home-v2.html, about2.html, and footer.js to point to service.html
+- [x] Remove the redundant services2.html file from the workspace
+
+## Services Redesign
+- [x] Build dark "Capabilities Hub" Hero section in service.html
+- [x] Implement Hero service cards grid with SVG icons and hover spotlight effects in CSS/JS
+- [x] Build split-layout "Interactive Service Explorer" (sticky visual column & scrolling detail column)
+- [x] Write Scrollspy JavaScript using IntersectionObserver to coordinate visual states (images, active stats counter, neon color glows)
+- [x] Redesign "Events Covered" section into 4 themed glassmorphic cluster cards with interactive hover pills
+- [x] Test page scroll performance and responsive collapse layout
+- [ ] Update walkthrough report with the new capabilities

@@ -1,0 +1,13 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+.vscode/
+.idea/
+
+# Dependencies / build (none today, but safe defaults)
+node_modules/
+dist/
+.cache/
