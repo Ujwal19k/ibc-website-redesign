@@ -21,7 +21,11 @@
       "Bash(node crop.js)",
       "Bash(node crop2.js)",
       "mcp__Claude_Preview__preview_start",
-      "WebFetch(domain:21st.dev)"
+      "WebFetch(domain:21st.dev)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "WebFetch(domain:cobe.vercel.app)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

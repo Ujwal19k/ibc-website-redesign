@@ -48,8 +48,6 @@
   .btn-red:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 6px 22px -4px rgba(209,43,29,.45)}
   .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
   .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
-  .btn.btn-outline-dark{border-color:rgba(27,36,48,.35)}
-  .btn.btn-outline-dark:hover{background:var(--red);color:#fff;border-color:var(--red)}
   .center-cta{text-align:center;margin-top:48px}
 
   .topbar{position:fixed;top:0;left:0;right:0;z-index:60;padding:16px 0 0;transition:padding .35s ease}
@@ -365,32 +363,62 @@
 
   /* 6. LEADERSHIP */
   #team{background:#EBF3FC;position:relative;overflow:hidden}
-  #team::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(rgba(0,96,171,.08) 1.5px,transparent 1.5px);background-size:28px 28px;opacity:0.8}
+  #team::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background-image:radial-gradient(rgba(0,96,171,.08) 1.5px,transparent 1.5px);
+    background-size:28px 28px;opacity:0.8}
   #team .wrap{position:relative;z-index:2}
 
   /* Aurora Background styles */
-  .aurora-container{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
-  .aurora-element{--white:#ffffff;--transparent:rgba(255,255,255,0);--blue-500:#3b82f6;--indigo-300:#a5b4fc;--blue-300:#93c5fd;--violet-200:#ddd6fe;--blue-400:#60a5fa;--white-gradient:repeating-linear-gradient(100deg,var(--white) 0%,var(--white) 7%,var(--transparent) 10%,var(--transparent) 12%,var(--white) 16%);--aurora:repeating-linear-gradient(100deg,var(--blue-500) 10%,var(--indigo-300) 15%,var(--blue-300) 20%,var(--violet-200) 25%,var(--blue-400) 30%);position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;background-image:var(--white-gradient),var(--aurora);background-size:300% 200%;background-position:50% 50%,50% 50%;filter:blur(8px) invert(1);opacity:0.70;will-change:transform;mask-image:radial-gradient(ellipse at 100% 0%,black 10%,transparent 70%),radial-gradient(ellipse at 0% 100%,black 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 100% 0%,black 10%,transparent 70%),radial-gradient(ellipse at 0% 100%,black 10%,transparent 70%)}
-  .aurora-element::after{content:"";position:absolute;inset:0;background-image:var(--white-gradient),var(--aurora);background-size:200% 100%;animation:aurora-anim 32s linear infinite;background-attachment:fixed;mix-blend-mode:difference}
-  @keyframes aurora-anim{from{background-position:50% 50%,50% 50%}to{background-position:350% 50%,350% 50%}}
-
-  /* Global presence — cards + image */
-  .reach-layout{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center}
-  .reach-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .reach-card{background:#fff;border:1px solid rgba(20,30,45,.08);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;cursor:default}
-  .reach-card::before,.reach-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background-attachment:fixed}
-  .reach-card::before{border:1px solid transparent;background-image:radial-gradient(160px 160px at calc(var(--x,-9999)*1px) calc(var(--y,-9999)*1px),rgba(209,43,29,.55),transparent);-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;z-index:2}
-  .reach-card::after{background-image:radial-gradient(280px 280px at calc(var(--x,-9999)*1px) calc(var(--y,-9999)*1px),rgba(209,43,29,.05),transparent);z-index:0}
-  .reach-card:hover::before,.reach-card:hover::after{opacity:1}
-  .reach-card>*{position:relative;z-index:1}
-  .reach-ic{width:46px;height:46px;border-radius:12px;background:rgba(209,43,29,.1);color:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .reach-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .reach-card h3{font-size:1.18rem;color:var(--carbon);margin-bottom:8px;letter-spacing:-.01em}
-  .reach-card p{font-size:.9rem;color:var(--graphite);line-height:1.55}
-  .reach-img-wrap{border-radius:18px;overflow:hidden;height:100%;min-height:280px}
-  .reach-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05) translateX(-4%);transform-origin:center center}
-  @media(max-width:900px){.reach-layout{grid-template-columns:1fr}.reach-img-wrap{height:220px}}
-
+  .aurora-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .aurora-element {
+    --white: #ffffff;
+    --transparent: rgba(255, 255, 255, 0);
+    --blue-500: #3b82f6;
+    --indigo-300: #a5b4fc;
+    --blue-300: #93c5fd;
+    --violet-200: #ddd6fe;
+    --blue-400: #60a5fa;
+    --white-gradient: repeating-linear-gradient(100deg, var(--white) 0%, var(--white) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--white) 16%);
+    --aurora: repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
+    
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: var(--white-gradient), var(--aurora);
+    background-size: 300% 200%;
+    background-position: 50% 50%, 50% 50%;
+    filter: blur(8px) invert(1);
+    opacity: 0.70;
+    will-change: transform;
+    mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%), radial-gradient(ellipse at 0% 100%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%), radial-gradient(ellipse at 0% 100%, black 10%, transparent 70%);
+  }
+  .aurora-element::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--white-gradient), var(--aurora);
+    background-size: 200% 100%;
+    animation: aurora-anim 32s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+  }
+  @keyframes aurora-anim {
+    from {
+      background-position: 50% 50%, 50% 50%;
+    }
+    to {
+      background-position: 350% 50%, 350% 50%;
+    }
+  }
   /* Leadership horizontal scroll */
   .ld-scroll-wrap{position:relative;margin-top:32px}
   .ld-scroll-wrap::before,.ld-scroll-wrap::after{content:"";position:absolute;top:0;bottom:40px;width:100px;z-index:2;pointer-events:none}
@@ -747,7 +775,7 @@
 
 <div class="topbar" id="topbar">
   <div class="bar-shell"><div class="bar">
-    <a href="ibc-home-v2.html" class="logo" aria-label="International Business Conferences home"><img class="logo-white" src="assets/IBC_Logo_white.svg" alt="International Business Conferences"><img class="logo-color" src="assets/IBC_Logo.svg" alt="International Business Conferences"></a>
+    <a href="ibc-home-v2.html" class="logo" aria-label="International Business Conferences home"><img class="logo-white" src="assets/ibc-logo-white-2.png" alt="International Business Conferences"><img class="logo-color" src="assets/ibc-logo-2.png" alt="International Business Conferences"></a>
     <nav class="navlinks">
       <a href="about2.html" class="active" aria-current="page">About</a><a href="service.html">Services</a><a href="ibc-home-v2.html#events">Events</a>
       <a href="gallery.html">Media</a><a href="team.html">Team</a><a href="ibc-home-v2.html#contact" class="btn-cta">Enquire now</a>
@@ -788,8 +816,8 @@
       <div class="who-accordion">
         <div class="who-item open" data-who-item data-image="assets/About/who_1.jpg">
           <span class="who-bar"><span class="who-bar-fill"></span></span>
-          <button class="who-trigger">25+ years of specialised delivery</button>
-          <div class="who-panel"><p>International Business Conferences (IBC) is one of India's leading conference, training, and events companies. For over 25 years we've specialised in planning and delivering conferences, awards, summits, workshops, in-house programs, and webinars.</p></div>
+          <button class="who-trigger">21 years of specialised delivery</button>
+          <div class="who-panel"><p>International Business Conferences (IBC) is one of India's leading conference, training, and events companies. For over 21 years we've specialised in planning and delivering conferences, awards, summits, workshops, in-house programs, and webinars.</p></div>
         </div>
         <div class="who-item" data-who-item data-image="assets/About/who_2.jpg">
           <span class="who-bar"><span class="who-bar-fill"></span></span>
@@ -838,77 +866,44 @@
   </div>
 </div></section></div>
 
-<!-- 6. TIMELINE (OUR JOURNEY) -->
-<section class="section tl">
-  <div class="wrap">
-    <div class="journey-grid">
-
-      <!-- Left Sticky Section -->
-      <div class="journey-left reveal">
-        <span class="eyebrow">Our journey</span>
-        <h2>25 years in the making</h2>
-        <p class="journey-desc">Tracing our growth from a focused training initiative to India's leading industry knowledge and B2B conference platform since 2001.</p>
-        <div class="journey-visual">
-          <img src="assets/About/journey.png" alt="IBC Growth Chart Graphics">
-        </div>
+<!-- 4. IMPACT / ACHIEVEMENTS -->
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Our impact</span>
+    <h2>Two decades of measurable impact</h2>
+    <p>Since 2001, we have built a trusted network of industry leaders, expert advisors, and corporate clients, delivering benchmark training programs and conferences across the country.</p></div>
+  <div class="impact-grid">
+    <div class="award-card reveal">
+      <div class="award-eyebrow">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        Times Applaud Recognition
       </div>
-
-      <!-- Right Scrolling Timeline Section -->
-      <div class="journey-right">
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">2001</div>
-          <div class="journey-card">
-            <h3>IBC Founded</h3>
-            <p>IBC founded in Mumbai by Nitin Vinod Shah, with a clear focus on corporate training and industry learning.</p>
-          </div>
-        </div>
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">2000s</div>
-          <div class="journey-card">
-            <h3>PSU &amp; Corporate Focus</h3>
-            <p>Establishes its authority across key PSU and enterprise sectors (Oil &amp; Gas, Power, Human Resources, Safety).</p>
-          </div>
-        </div>
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">2019</div>
-          <div class="journey-card">
-            <h3>Digital Integration</h3>
-            <p>Expands research capabilities and digital formats, transitioning programs for remote &amp; hybrid learning options.</p>
-          </div>
-        </div>
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">2022</div>
-          <div class="journey-card">
-            <h3>Trendsetter Award</h3>
-            <p>Receives the prestigious Trendsetter Award for excellence in corporate training &amp; conferences, honoured by the Governor of Maharashtra.</p>
-          </div>
-        </div>
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">2025+</div>
-          <div class="journey-card">
-            <h3>Branded Conferences</h3>
-            <p>Launches major sector summits: PeopleTech, Manufacturing 5.0, Safe India Conclave, and the OHS&amp;E Awards.</p>
-          </div>
-        </div>
-
-        <div class="journey-item reveal">
-          <div class="journey-badge">Today</div>
-          <div class="journey-card">
-            <h3>25+ Years of Leadership</h3>
-            <p>Host of over 1,500+ conferences, 5,000+ training workshops, and serving 16+ core industries pan-India.</p>
-          </div>
-        </div>
-
+      <h3>Trendsetter Award <span class="award-year-inline">2022</span></h3>
+      <p class="award-desc">Awarded to Director Nitin Vinod Shah for excellence in corporate trainings &amp; conferences — honoured by the Governor of Maharashtra.</p>
+      <div class="award-photo-wrap">
+        <img class="award-photo active" src="assets/award-ceremony.jpg" alt="Award ceremony — Nitin Vinod Shah">
+        <img class="award-photo" src="assets/award-medal.jpg" alt="Trendsetter Award 2022 — Certificate">
       </div>
-
+    </div>
+    <div class="stat-grid">
+      <div class="stat reveal">
+        <span class="stat-lbl">Conferences &amp; Awards</span>
+        <div><b>1,500<i>+</i></b><span>events delivered across 16+ sectors</span></div>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-lbl">Workshops &amp; Seminars</span>
+        <div><b>5,000<i>+</i></b><span>sessions conducted since 2001</span></div>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-lbl">Expert Speakers</span>
+        <div><b>3,500<i>+</i></b><span>industry leaders featured</span></div>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-lbl">In-house Programs</span>
+        <div><b>250<i>+</i></b><span>delivered for corporate clients</span></div>
+      </div>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- 5. WHY CHOOSE IBC -->
 <section class="why">
@@ -924,7 +919,7 @@
     <div class="why-col">
       <div class="why-card reveal">
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
-        <h3>25+ years of proven delivery</h3>
+        <h3>21+ years of proven delivery</h3>
         <p>A track record built across 1,500+ conferences and thousands of training sessions.</p>
       </div>
       <div class="why-card reveal">
@@ -966,7 +961,7 @@
     <div class="why-ticker-mask">
     <div class="why-ticker-track">
       <div class="why-ticker-item"><span class="tk-label"><b>1,500+</b> Conferences &amp; Awards</span><span class="why-ticker-sep">✦</span></div>
-      <div class="why-ticker-item"><span class="tk-label"><b>25+ Years</b> of Excellence</span><span class="why-ticker-sep">✦</span></div>
+      <div class="why-ticker-item"><span class="tk-label"><b>21 Years</b> of Excellence</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>5,000+</b> Workshops &amp; Seminars</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>3,500+</b> Expert Speakers</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>16</b> Industries Served</span><span class="why-ticker-sep">✦</span></div>
@@ -974,7 +969,7 @@
       <div class="why-ticker-item"><span class="tk-label"><b>250+</b> In-house Programs</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>Pan-India</b> Reach</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>1,500+</b> Conferences &amp; Awards</span><span class="why-ticker-sep">✦</span></div>
-      <div class="why-ticker-item"><span class="tk-label"><b>25+ Years</b> of Excellence</span><span class="why-ticker-sep">✦</span></div>
+      <div class="why-ticker-item"><span class="tk-label"><b>21 Years</b> of Excellence</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>5,000+</b> Workshops &amp; Seminars</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>3,500+</b> Expert Speakers</span><span class="why-ticker-sep">✦</span></div>
       <div class="why-ticker-item"><span class="tk-label"><b>16</b> Industries Served</span><span class="why-ticker-sep">✦</span></div>
@@ -987,79 +982,238 @@
 
 </section>
 
-<!-- 4. IMPACT / ACHIEVEMENTS -->
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Our impact</span>
-    <h2>Two decades of measurable impact</h2>
-    <p>Since 2001, we have built a trusted network of industry leaders, expert advisors, and corporate clients, delivering benchmark training programs and conferences across the country.</p></div>
-  <div class="impact-grid">
-    <div class="award-card reveal">
-      <div class="award-eyebrow">
-        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-        Times Applaud Recognition
+<!-- 6. TIMELINE (OUR JOURNEY) -->
+<section class="section tl">
+  <div class="wrap">
+    <div class="journey-grid">
+      
+      <!-- Left Sticky Section -->
+      <div class="journey-left reveal">
+        <span class="eyebrow">Our journey</span>
+        <h2>21 years in the making</h2>
+        <p class="journey-desc">Tracing our growth from a focused training initiative to India's leading industry knowledge and B2B conference platform since 2001.</p>
+        <div class="journey-visual">
+          <img src="assets/About/journey.png" alt="IBC Growth Chart Graphics">
+        </div>
       </div>
-      <h3>Trendsetter Award <span class="award-year-inline">2022</span></h3>
-      <p class="award-desc">Awarded to Director Nitin Vinod Shah for excellence in corporate trainings &amp; conferences — honoured by the Governor of Maharashtra.</p>
-      <div class="award-photo-wrap">
-        <img class="award-photo active" src="assets/award-ceremony.jpg" alt="Award ceremony — Nitin Vinod Shah">
-        <img class="award-photo" src="assets/award-medal.jpg" alt="Trendsetter Award 2022 — Certificate">
+      
+      <!-- Right Scrolling Timeline Section -->
+      <div class="journey-right">
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">2001</div>
+          <div class="journey-card">
+            <h3>IBC Founded</h3>
+            <p>IBC founded in Mumbai by Nitin Vinod Shah, with a clear focus on corporate training and industry learning.</p>
+          </div>
+        </div>
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">2000s</div>
+          <div class="journey-card">
+            <h3>PSU &amp; Corporate Focus</h3>
+            <p>Establishes its authority across key PSU and enterprise sectors (Oil &amp; Gas, Power, Human Resources, Safety).</p>
+          </div>
+        </div>
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">2019</div>
+          <div class="journey-card">
+            <h3>Digital Integration</h3>
+            <p>Expands research capabilities and digital formats, transitioning programs for remote &amp; hybrid learning options.</p>
+          </div>
+        </div>
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">2022</div>
+          <div class="journey-card">
+            <h3>Trendsetter Award</h3>
+            <p>Receives the prestigious Trendsetter Award for excellence in corporate training &amp; conferences, honoured by the Governor of Maharashtra.</p>
+          </div>
+        </div>
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">2025+</div>
+          <div class="journey-card">
+            <h3>Branded Conferences</h3>
+            <p>Launches major sector summits: PeopleTech, Manufacturing 5.0, Safe India Conclave, and the OHS&amp;E Awards.</p>
+          </div>
+        </div>
+        
+        <div class="journey-item reveal">
+          <div class="journey-badge">Today</div>
+          <div class="journey-card">
+            <h3>21+ Years of Leadership</h3>
+            <p>Host of over 1,500+ conferences, 5,000+ training workshops, and serving 16+ core industries pan-India.</p>
+          </div>
+        </div>
+        
       </div>
-    </div>
-    <div class="stat-grid">
-      <div class="stat reveal">
-        <span class="stat-lbl">Conferences &amp; Awards</span>
-        <div><b>1,500<i>+</i></b><span>events delivered across 16+ sectors</span></div>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-lbl">Workshops &amp; Seminars</span>
-        <div><b>5,000<i>+</i></b><span>sessions conducted since 2001</span></div>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-lbl">Expert Speakers</span>
-        <div><b>3,500<i>+</i></b><span>industry leaders featured</span></div>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-lbl">In-house Programs</span>
-        <div><b>250<i>+</i></b><span>delivered for corporate clients</span></div>
-      </div>
+      
     </div>
   </div>
-</div></section>
+</section>
 
-<!-- 7. GLOBAL PRESENCE (reuses the leadership aurora background) -->
-<section class="section" id="team" style="padding-top:48px;padding-bottom:48px">
+<!-- 7. LEADERSHIP -->
+<section class="section" id="team" style="padding-top:56px; padding-bottom:45px">
   <div class="aurora-container">
     <div class="aurora-element"></div>
   </div>
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Global presence</span>
-      <h2>Trusted beyond India's borders</h2>
-      <p>Beyond our pan-India work, IBC has organised conferences and delivered corporate training across South &amp; South-East Asia and the Middle East.</p></div>
-    <div class="reach-layout">
-      <div class="reach-grid reveal">
-        <div class="reach-card">
-          <div class="reach-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>India</h3><p>Headquartered in Mumbai, delivering conferences and training pan-India across 16+ sectors.</p>
+    <div class="section-head reveal"><span class="eyebrow">Leadership</span>
+      <h2>Led by industry veterans</h2>
+      <p>A management team and advisory board carrying decades of frontline experience from India's largest enterprises.</p></div>
+  </div><!-- /wrap -->
+
+  <div class="ld-scroll-wrap">
+    <div class="ld-grid" id="ldGrid">
+      <div class="ld reveal">
+        <div class="ld-pic-wrap">
+          <img src="assets/leadership/rahul_shah.jpg" alt="Mr. Rahul Shah">
         </div>
-        <div class="reach-card">
-          <div class="reach-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>Bangladesh</h3><p>Industry conferences and corporate training for regional enterprises.</p>
-        </div>
-        <div class="reach-card">
-          <div class="reach-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>Thailand</h3><p>Summits and executive roundtables hosted in Bangkok.</p>
-        </div>
-        <div class="reach-card">
-          <div class="reach-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>Middle East</h3><p>Programs and partnerships across the Gulf and wider Middle East.</p>
+        <div class="ld-info">
+          <div class="ld-text">
+            <h3>Mr. Rahul Shah</h3>
+            <span>Chairman</span>
+          </div>
+          <div class="ld-social">
+            <a href="#" class="ld-soc-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="reach-img-wrap reveal">
-        <img src="assets/About/country.png" alt="IBC global presence">
+
+      <div class="ld reveal">
+        <div class="ld-pic-wrap">
+          <img src="assets/leadership/nitin_shah.jpg" alt="Mr. Nitin Shah">
+        </div>
+        <div class="ld-info">
+          <div class="ld-text">
+            <h3>Mr. Nitin Shah</h3>
+            <span>Director Strategy Asia-Pacific</span>
+          </div>
+          <div class="ld-social">
+            <a href="#" class="ld-soc-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ld reveal">
+        <div class="ld-pic-wrap">
+          <img src="assets/leadership/nisha_shah.jpg" alt="Ms. Nisha Shah">
+        </div>
+        <div class="ld-info">
+          <div class="ld-text">
+            <h3>Ms. Nisha Shah</h3>
+            <span>Senior Research &amp; Digital Analyst</span>
+          </div>
+          <div class="ld-social">
+            <a href="#" class="ld-soc-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ld reveal">
+        <div class="ld-pic-wrap">
+          <img src="assets/leadership/sharlin-thomas.jpg" alt="Ms. Sherlin Thomas">
+        </div>
+        <div class="ld-info">
+          <div class="ld-text">
+            <h3>Ms. Sherlin Thomas</h3>
+            <span>Senior Sales Director</span>
+          </div>
+          <div class="ld-social">
+            <a href="#" class="ld-soc-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ld reveal">
+        <div class="ld-pic-wrap">
+          <img src="assets/leadership/sabri.png" alt="Mr. A.R.K. Sabri">
+        </div>
+        <div class="ld-info">
+          <div class="ld-text">
+            <h3>Mr. A.R.K. Sabri</h3>
+            <span>Head BD &amp; International Market</span>
+          </div>
+          <div class="ld-social">
+            <a href="#" class="ld-soc-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div><!-- /ld-grid -->
+  </div><!-- /ld-scroll-wrap -->
+
+  <!-- Footer: CTA left, Arrows right -->
+  <div class="wrap">
+    <div class="ld-footer">
+      <a href="#" class="btn btn-outline">View Full Team</a>
+      <div class="ld-arrows">
+        <button class="ld-arrow-btn" id="ldPrev" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="ld-arrow-btn" id="ldNext" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
       </div>
     </div>
   </div>
+
 </section>
+
+<script>
+  (function(){
+    var grid = document.getElementById('ldGrid');
+    var scrollAmt = 277; // card width 253 + gap 24
+    document.getElementById('ldPrev').addEventListener('click', function(){
+      grid.scrollBy({left: -scrollAmt, behavior: 'smooth'});
+    });
+    document.getElementById('ldNext').addEventListener('click', function(){
+      grid.scrollBy({left: scrollAmt, behavior: 'smooth'});
+    });
+
+    // Desktop grab-to-scroll
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    grid.addEventListener('mousedown', function(e) {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      isDown = true;
+      grid.classList.add('active-drag');
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+
+    grid.addEventListener('mouseleave', function() {
+      isDown = false;
+      grid.classList.remove('active-drag');
+    });
+
+    grid.addEventListener('mouseup', function() {
+      isDown = false;
+      grid.classList.remove('active-drag');
+    });
+
+    grid.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - grid.offsetLeft;
+      const walk = (x - startX) * 1.5; // adjust speed multiplier if needed
+      grid.scrollLeft = scrollLeft - walk;
+    });
+  })();
+</script>
 
 <!-- 8. INDUSTRIES & REACH -->
 <section class="section" style="overflow: hidden; padding-bottom: 24px;">
@@ -1114,14 +1268,7 @@
 <footer><div class="wrap">
   <div class="f-top">
     <div class="f-brand">
-      <div class="f-logo-toggle-wrap">
-        <a href="ibc-home-v2.html" class="logo logo-colored-patch" id="fLogoColored">
-          <span class="logo-patch"><img src="assets/IBC_Logo.svg" alt="International Business Conferences"></span>
-        </a>
-        <a href="ibc-home-v2.html" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
-          <img src="assets/IBC_Logo_white.svg" alt="International Business Conferences" style="height: 56px; width: auto;">
-        </a>
-      </div>
+      <a href="ibc-home-v2.html" class="logo"><img src="assets/ibc-logo-white-2.png" alt="International Business Conferences"></a>
       <p>A Mumbai-based B2B events and corporate training company connecting industry experts with decision-makers since 2001.</p>
       <div class="f-social">
         <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -1327,7 +1474,7 @@
 
   // Stat cards — border glow uses absolute viewport coords + background-attachment:fixed (same as home)
   document.addEventListener('pointermove',e=>{
-    document.querySelectorAll('.stat,.reach-card').forEach(c=>{
+    document.querySelectorAll('.stat').forEach(c=>{
       c.style.setProperty('--x',e.clientX.toFixed(1));
       c.style.setProperty('--y',e.clientY.toFixed(1));
     });
@@ -1406,6 +1553,5 @@
   /* Animated beams handled via CSS mv-aurora animation */
   /* --- END: BEAMS BACKGROUND EXPERIMENT --- */
 </script>
-<script src="components/footer.js"></script>
 </body>
 </html>

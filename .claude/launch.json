@@ -4,8 +4,9 @@
     {
       "name": "static-preview",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "http-server", "-p", "5577", "-c-1"],
-      "port": 5577
+      "runtimeArgs": ["-y", "http-server", "-c-1"],
+      "port": 5577,
+      "autoPort": true
     }
   ]
 }

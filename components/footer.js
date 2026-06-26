@@ -8,13 +8,49 @@ document.addEventListener("DOMContentLoaded", function() {
   const isAbout = pathname.includes("about2.html");
   const isServices = pathname.includes("service.html");
 
+  // Inject CSS styles for the footer logo toggle
+  if (!document.getElementById("f-footer-logo-styles")) {
+    const style = document.createElement("style");
+    style.id = "f-footer-logo-styles";
+    style.textContent = `
+      .f-logo-toggle-wrap {
+        display: inline-flex;
+        cursor: pointer;
+      }
+      .logo-patch {
+        background: #ffffff;
+        padding: 8px 16px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s;
+      }
+      .logo-patch img {
+        height: 40px;
+        width: auto;
+        display: block;
+      }
+      .logo-patch:hover {
+        transform: scale(1.03);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   footerEl.innerHTML = `
     <div class="wrap">
       <div class="f-top">
         <div class="f-brand">
-          <a href="${isAbout || isServices ? 'ibc-home-v2.html' : '#'}" class="logo">
-            <img src="assets/ibc-logo-white-2.png" alt="International Business Conferences">
-          </a>
+          <div class="f-logo-toggle-wrap">
+            <a href="${isAbout || isServices ? 'ibc-home-v2.html' : '#'}" class="logo logo-colored-patch" id="fLogoColored">
+              <span class="logo-patch"><img src="assets/IBC_Logo.svg" alt="International Business Conferences"></span>
+            </a>
+            <a href="${isAbout || isServices ? 'ibc-home-v2.html' : '#'}" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
+              <img src="assets/IBC_Logo_white.svg" alt="International Business Conferences" style="height: 56px; width: auto;">
+            </a>
+          </div>
           <p>A Mumbai-based B2B events and corporate training company connecting industry experts with decision-makers since 2001.</p>
           <div class="f-social">
             <a href="#" aria-label="LinkedIn">
@@ -61,4 +97,22 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
   `;
+
+  // Add click event listeners to toggle the logo between colored on white patch and white clean
+  const fLogoColored = document.getElementById("fLogoColored");
+  const fLogoWhite = document.getElementById("fLogoWhite");
+  if (fLogoColored && fLogoWhite) {
+    function toggleFooterLogo(e) {
+      e.preventDefault();
+      if (fLogoColored.style.display === "none") {
+        fLogoColored.style.display = "inline-flex";
+        fLogoWhite.style.display = "none";
+      } else {
+        fLogoColored.style.display = "none";
+        fLogoWhite.style.display = "inline-flex";
+      }
+    }
+    fLogoColored.addEventListener("click", toggleFooterLogo);
+    fLogoWhite.addEventListener("click", toggleFooterLogo);
+  }
 });
