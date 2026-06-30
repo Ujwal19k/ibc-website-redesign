@@ -1,0 +1,17 @@
+html {
+  background-color: #0A2540 !important; /* Matches the dark navy hero section */
+}
+body {
+  background-color: #FFFFFF; /* Ensure the rest of the page stays white */
+  animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Native cross-document view transition for modern Chromium browsers */
+@view-transition {
+  navigation: auto;
+}

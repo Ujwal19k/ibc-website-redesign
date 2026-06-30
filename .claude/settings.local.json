@@ -25,7 +25,10 @@
       "WebFetch(domain:cdn.jsdelivr.net)",
       "WebFetch(domain:cobe.vercel.app)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git update-index *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

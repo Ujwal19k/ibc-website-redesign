@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="f-top">
         <div class="f-brand">
           <div class="f-logo-toggle-wrap">
-            <a href="${isAbout || isServices ? 'ibc-home-v2.html' : '#'}" class="logo logo-colored-patch" id="fLogoColored">
+            <a href="${isAbout || isServices ? 'index.html' : '#'}" class="logo logo-colored-patch" id="fLogoColored">
               <span class="logo-patch"><img src="assets/IBC_Logo.svg" alt="International Business Conferences"></span>
             </a>
-            <a href="${isAbout || isServices ? 'ibc-home-v2.html' : '#'}" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
+            <a href="${isAbout || isServices ? 'index.html' : '#'}" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
               <img src="assets/IBC_Logo_white.svg" alt="International Business Conferences" style="height: 56px; width: auto;">
             </a>
           </div>
@@ -72,15 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
           <a href="about2.html" class="${isAbout ? 'active' : ''}">About us</a>
           <a href="service.html" class="${isServices ? 'active' : ''}">Services</a>
           <a href="${isAbout ? '#team' : 'about2.html#team'}">Team</a>
-          <a href="ibc-home-v2.html#events">Events</a>
+          <a href="events.html">Events</a>
           <a href="#">Gallery</a>
-          <a href="ibc-home-v2.html#contact">Contact</a>
+          <a href="index.html#contact">Contact</a>
         </div>
         <div class="f-col">
           <h4>Explore</h4>
-          <a href="ibc-home-v2.html#events">Upcoming Events</a>
-          <a href="#">Past Events</a>
-          <a href="ibc-home-v2.html#industries">Industries</a>
+          <a href="events.html">Upcoming Events</a>
+          <a href="events.html?tab=past">Past Events</a>
+          <a href="index.html#industries">Industries</a>
           <a href="${isAbout ? '#why' : 'about2.html#why'}">Why IBC</a>
           <a href="#">Privacy Policy</a>
         </div>

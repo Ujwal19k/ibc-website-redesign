@@ -1,0 +1,61 @@
+/* ============ EVENTS GRID + CARDS ============ */
+.ev-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px 20px}
+.year-sep{font-family:'Space Grotesk';font-size:1.5rem;font-weight:600;color:var(--carbon);letter-spacing:-.02em;margin:36px 0 16px;display:flex;align-items:center;gap:14px}
+.year-sep:first-child{margin-top:8px}
+.year-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:18px}
+.ecard{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}
+.ecard:hover{transform:translateY(-6px);box-shadow:0 22px 50px -22px rgba(20,30,45,.32)}
+.ecard-pic{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--navy)}
+.ecard-pic img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.ecard:hover .ecard-pic img{transform:scale(1.05)}
+.ecard.is-past .ecard-pic img{filter:grayscale(.55)}
+.ecard.is-past:hover .ecard-pic img{filter:grayscale(0)}
+.ecard-badge{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:var(--r-pill);backdrop-filter:blur(6px)}
+.ecard-badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-coming{background:rgba(212,160,23,.92);color:#3a2c00}
+.b-open{background:rgba(46,139,87,.94);color:#fff}
+.b-live{background:rgba(209,43,29,.94);color:#fff}
+.b-past{background:rgba(20,30,45,.7);color:#fff}
+.b-live .dot{animation:pulse-dot 1.2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}50%{box-shadow:0 0 0 5px rgba(255,255,255,0)}}
+.ecard-edition{position:absolute;top:12px;right:12px;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.92);color:var(--carbon);padding:5px 11px;border-radius:var(--r-pill)}
+.ecard-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.ecard-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+
+/* Colorful Tag Categories */
+.ecard-tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:var(--r-pill);padding:4px 11px}
+.ecard-tag-conf-awards{background:#F0EFF5;color:#6C5CE7}
+.ecard-tag-conf{background:#E1F1FB;color:#0A5CA0}
+.ecard-tag-summit{background:#FFF2DC;color:#B8860B}
+.ecard-tag-workshop{background:#E8F5E9;color:#2E7D32}
+.ecard-tag-roundtable{background:#FFEAE8;color:var(--red)}
+.ecard-tag-webinar{background:#E3F2FD;color:#1565C0}
+/* Fallback */
+.ecard-tag-other{background:var(--fog);color:var(--red)}
+
+.ecard-edition-b{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--carbon);background:var(--fog);border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 11px}
+.ecard-body h3{font-size:1.14rem;color:var(--carbon);line-height:1.28;margin-bottom:14px}
+.ecard-meta{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.ecard-meta .m{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--graphite)}
+.ecard-meta .m svg{width:15px;height:15px;flex:none;stroke:var(--red);fill:none;stroke-width:2}
+.ecard-stats{font-size:.82rem;color:var(--slate);border-top:1px solid var(--line);padding-top:12px;margin-bottom:16px}
+.ecard-actions{margin-top:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ecard-actions .btn{padding:10px 20px;font-size:.9rem}
+.ecard-actions .vd{font-size:.88rem;font-weight:600;color:var(--carbon);display:inline-flex;align-items:center;gap:5px}
+.ecard-actions .vd svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s,stroke .15s}
+.ecard:hover .ecard-actions .vd svg{transform:translateX(3px)}
+.ecard-actions .vd:hover{color:var(--red)}
+.ecard-actions .vd:hover svg{stroke:var(--red)}
+
+/* List View Overrides */
+.ev-grid.list{grid-template-columns:1fr;gap:16px}
+.ev-grid.list .ecard{flex-direction:row}
+.ev-grid.list .ecard-pic{aspect-ratio:auto;width:280px;flex:none}
+.ev-grid.list .ecard-body{padding:24px 28px}
+@media(max-width:980px){.ev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){
+  .ev-grid,.ev-grid.list{grid-template-columns:1fr}
+  .ev-grid.list .ecard{flex-direction:column}
+  .ev-grid.list .ecard-pic{width:100%;aspect-ratio:16/9}
+}

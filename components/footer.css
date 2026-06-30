@@ -1,0 +1,23 @@
+/* ============================================================
+   Shared footer styles — pairs with components/footer.js, which
+   injects the footer markup. Link this on any page that uses
+   footer.js so the footer renders identically everywhere.
+   Depends on design tokens (--navy, --red, --line) defined per page.
+   ============================================================ */
+
+footer{background:var(--navy);border-top:none;padding:72px 0 28px;color:rgba(255,255,255,.6)}
+.f-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:40px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.1)}
+.f-brand .logo img{height:78px}
+.f-brand p{margin-top:18px;font-size:.94rem;max-width:280px;line-height:1.55}
+.f-col h4{font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.f-col a{display:block;font-size:.94rem;margin-bottom:12px;color:rgba(255,255,255,.6)} .f-col a:hover{color:#fff}
+.f-contact div{font-size:.92rem;margin-bottom:13px;line-height:1.5}
+.f-contact b{color:#fff;display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;font-family:'Space Grotesk',sans-serif;font-weight:500}
+.f-social{display:flex;gap:10px;margin-top:12px}
+.f-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+.f-social a:hover{background:var(--red)} .f-social a:hover svg{fill:#fff} .f-social svg{width:16px;height:16px;fill:rgba(255,255,255,.7);transition:fill .16s}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:.86rem;color:rgba(255,255,255,.4);flex-wrap:wrap;gap:10px}
+.f-bottom .dots span{color:var(--red)}
+
+@media(max-width:920px){ .f-top{grid-template-columns:1fr 1fr} }
+@media(max-width:640px){ .f-top{grid-template-columns:1fr} }

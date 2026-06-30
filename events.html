@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — International Business Conferences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components/hero.css">
+<link rel="stylesheet" href="components/cta-duo.css">
+<link rel="stylesheet" href="components/card.css">
+<link rel="stylesheet" href="components/footer.css">
+<style>
+  :root{
+    --red:#D12B1D; --red-dark:#A8190D;
+    --blue:#0060AB; --navy:#0A2540; --navy-2:#0E2E4F;
+    --carbon:#1B2430; --graphite:#4D5562; --slate:#828A96;
+    --fog:#FFF3F5; --mist:#F5F7FA; --chalk:#E6E9EE; --paper:#FFFFFF; --line:#E2E6EC;
+    --maxw:1200px; --r-card:14px; --r-pill:200px; --r-btn:24px;
+    --shadow:0 1px 3px rgba(20,30,45,.05), 0 8px 24px -16px rgba(20,30,45,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--graphite);background:var(--mist);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:16px}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;color:var(--carbon);font-weight:500;letter-spacing:-.02em;line-height:1.04}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Inter';font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+  .eyebrow.on-dark{color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Inter';font-size:.96rem;font-weight:600;padding:12px 24px;border-radius:var(--r-btn);cursor:pointer;border:1.5px solid transparent;outline:none;transition:transform .18s,background .18s,color .18s,border-color .18s,box-shadow .2s;position:relative;overflow:hidden;flex-shrink:0;white-space:nowrap}
+  .btn>span,.btn svg{position:relative;z-index:1}
+  .btn svg{width:16px;height:16px}
+  .btn-primary{background:var(--carbon);color:#fff}
+  .btn-primary:hover{background:var(--red);color:#fff;transform:translateY(-2px);box-shadow:0 6px 22px -4px rgba(209,43,29,.4)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+  .btn.btn-outline-dark{border-color:rgba(27,36,48,.35);color:var(--carbon);background:transparent}
+  .btn.btn-outline-dark:hover{background:var(--red);color:#fff;border-color:var(--red)}
+
+  /* ============ TOPBAR (shared) ============ */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;padding:16px 0 0;transition:padding .35s ease}
+  .topbar.scrolled{padding:14px 0 0}
+  .bar-shell{max-width:1200px;margin:0 auto;padding:0 28px;border-radius:20px;border:1px solid transparent;background:transparent;transition:background .35s ease,border-color .35s ease,box-shadow .35s ease,max-width .35s ease}
+  .topbar.scrolled .bar-shell{max-width:1080px;background:var(--paper);border-color:var(--line);box-shadow:0 4px 20px -6px rgba(20,30,45,.14)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:84px;transition:height .35s ease}
+  .topbar.scrolled .bar{height:78px}
+  .logo{display:flex;align-items:center}
+  .logo img{height:60px;width:auto;display:block;transition:height .35s ease}
+  .topbar.scrolled .logo img{height:48px}
+  .logo .logo-white{display:block}
+  .logo .logo-color{display:none}
+  .topbar.scrolled .logo .logo-white{display:none}
+  .topbar.scrolled .logo .logo-color{display:block}
+  .navlinks{display:flex;align-items:center;gap:2px}
+  .navlinks a{font-size:.92rem;font-weight:500;color:rgba(255,255,255,.88);padding:9px 16px;border-radius:var(--r-pill);transition:background .16s,color .35s}
+  .navlinks a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .navlinks a.active{color:#fff}
+  .topbar.scrolled .navlinks a{color:var(--carbon)}
+  .topbar.scrolled .navlinks a:not(.btn-cta):hover{background:rgba(10,30,50,.07);color:var(--carbon)}
+  .topbar.scrolled .navlinks a.active{color:var(--red)}
+  .navlinks a.btn-cta{position:relative;overflow:hidden;background:var(--red);color:#fff;margin-left:10px}
+  .navlinks a.btn-cta:hover{background:var(--red-dark)}
+  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
+  .navlinks a.btn-cta:hover::before{left:130%}
+  .topbar.scrolled .navlinks a.btn-cta{color:#fff}
+  .menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:50%;width:44px;height:44px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;flex-shrink:0;z-index:61;position:relative;transition:background .35s,border-color .35s}
+  .menu-btn span{width:18px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .25s ease,background .35s ease}
+  .topbar.scrolled .menu-btn{background:var(--paper);border-color:var(--line)}
+  .topbar.scrolled .menu-btn span{background:var(--carbon)}
+  .menu-btn.active span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .menu-btn.active span:nth-child(2){opacity:0}
+  .menu-btn.active span:nth-child(3){transform:translateY(-3.5px) rotate(-45deg)}
+  .mobile-drawer{display:none;position:fixed;inset:0;z-index:59;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);flex-direction:column;justify-content:space-between;padding:108px 28px 40px;opacity:0;transform:scale(.96);transition:opacity .25s ease,transform .25s ease}
+  .mobile-drawer.open{display:flex}
+  .mobile-drawer.show{opacity:1;transform:scale(1)}
+  .mobile-links{display:flex;flex-direction:column}
+  .mobile-links a{font-size:1.15rem;font-weight:500;color:var(--carbon);padding:16px 4px;border-bottom:1px solid var(--line)}
+  .mobile-drawer .btn{width:100%;justify-content:center}
+
+  /* ============ INTRO STRIP ============ */
+  .intro{padding:48px 0 8px;text-align:center}
+  .intro p.summary{max-width:760px;margin:0 auto 24px;font-size:1.08rem;color:var(--graphite);line-height:1.6}
+  .intro-stats{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+  .intro-stats .st{padding:16px 30px;border-right:1px solid var(--line)}
+  .intro-stats .st:last-child{border-right:none}
+  .intro-stats .st b{display:block;font-family:'Space Grotesk';font-size:1.6rem;font-weight:600;color:var(--carbon);line-height:1}
+  .intro-stats .st b i{font-style:normal;color:var(--red)}
+  .intro-stats .st span{font-size:.82rem;color:var(--slate)}
+  @media(max-width:560px){.intro-stats .st{padding:14px 18px}}
+
+  /* ============ CONTROL BAR (tabs + filters) ============ */
+  .controls{position:relative;z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
+  .controls-inner{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  @media(min-width:761px){ .controls-inner .sep { display:block !important; } }
+  /* tab toggle */
+  .ev-tabs{display:inline-flex;background:var(--fog);border-radius:var(--r-pill);padding:4px;margin-bottom:0}
+  .ev-tabs button{font-family:'Inter';font-size:.94rem;font-weight:600;color:var(--graphite);background:none;border:none;padding:9px 22px;border-radius:var(--r-pill);cursor:pointer;transition:background .2s,color .2s}
+  .ev-tabs button .ct{opacity:.6;font-weight:500}
+  .ev-tabs button.active{background:var(--carbon);color:#fff}
+  /* filter bar */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;flex:1;justify-content:flex-end}
+  .filters .fsel{position:relative}
+  .filters select,.filters .search input{font-family:'Inter';font-size:.9rem;color:var(--carbon);border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;background:var(--paper);cursor:pointer;transition:border-color .15s}
+  .filters select{max-width:165px;padding-right:36px;appearance:none;-webkit-appearance:none;background:var(--paper) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center/14px}
+  .filters select:focus,.filters .search input:focus{outline:none;border-color:var(--blue)}
+  .filters .search{position:relative;flex:1;min-width:200px}
+  .filters .search input{width:100%;cursor:text;padding-left:38px}
+  .filters .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--slate);fill:none;stroke-width:2}
+  .filter-toggle{display:none}
+  .filters .fclose{display:none}
+  
+  /* ant design date picker mimic */
+  .ant-picker{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:#fff;transition:border-color .2s;height:38px;box-sizing:border-box}
+  .ant-picker:focus-within{border-color:#1677ff}
+  .ant-picker input{border:none;outline:none;background:transparent;font-family:'Inter',sans-serif;font-size:.9rem;color:var(--carbon);width:85px;cursor:pointer;position:relative}
+  .ant-picker input:invalid::-webkit-datetime-edit{color:transparent}
+  .ant-picker input:invalid::before{content:attr(data-placeholder);position:absolute;left:0;right:0;text-align:center;color:#bfbfbf;pointer-events:none}
+  .ant-picker input::-webkit-calendar-picker-indicator{opacity:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;z-index:2}
+  .ant-picker .picker-wrap{position:relative;display:flex;align-items:center}
+  .ant-picker .arrow{color:#bfbfbf;font-size:1rem;margin:0 8px}
+  .ant-picker svg{stroke:#bfbfbf;fill:none;stroke-width:1.8;width:15px;height:15px;margin-left:6px}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+  .chips:empty{display:none}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:500;color:var(--carbon);background:var(--fog);border:1px solid rgba(209,43,29,.18);border-radius:var(--r-pill);padding:6px 8px 6px 14px}
+  .chip button{background:none;border:none;cursor:pointer;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red)}
+  .chip button:hover{background:rgba(209,43,29,.12)}
+  .chip button svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.5}
+  .chip-clear{font-size:.82rem;font-weight:600;color:var(--blue);cursor:pointer;margin-left:4px}
+
+  /* ============ RESULTS HEADER ============ */
+  .results-head{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--maxw);margin:0 auto;padding:28px 28px 18px;flex-wrap:wrap}
+  .results-count{font-size:.94rem;color:var(--graphite)}
+  .results-count b{color:var(--carbon);font-weight:600}
+  .view-toggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .view-toggle button{background:var(--paper);border:none;padding:8px 11px;cursor:pointer;display:flex;align-items:center;color:var(--slate);transition:background .15s,color .15s}
+  .view-toggle button svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+  .view-toggle button.active{background:var(--carbon);color:#fff}
+
+  /* ============ EVENTS GRID ============ */
+  .ev-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px 20px}
+  .year-sep{font-family:'Space Grotesk';font-size:1.5rem;font-weight:600;color:var(--carbon);letter-spacing:-.02em;margin:36px 0 16px;display:flex;align-items:center;gap:14px}
+  .year-sep:first-child{margin-top:8px}
+  .year-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:18px}
+
+  /* list view */
+  .ev-grid.list{grid-template-columns:1fr;gap:16px}
+  @media(max-width:980px){.ev-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){
+    .ev-grid,.ev-grid.list{grid-template-columns:1fr}
+  }
+
+  /* load more + empty */
+  .load-wrap{text-align:center;padding:36px 0 0}
+  .load-wrap .btn{justify-content:center}
+  .load-note{font-size:.86rem;color:var(--slate);margin-top:14px}
+  .empty{text-align:center;max-width:440px;margin:30px auto;padding:48px 28px;background:var(--fog);border:1px dashed rgba(209,43,29,.25);border-radius:18px}
+  .empty .e-ic{width:54px;height:54px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--red)}
+  .empty .e-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
+  .empty h3{font-size:1.3rem;color:var(--carbon);margin-bottom:8px}
+  .empty p{color:var(--graphite);margin-bottom:20px}
+
+  /* mobile filter drawer */
+  @media(max-width:760px){
+    .navlinks{display:none}.menu-btn{display:flex}
+    .filter-toggle{display:inline-flex}
+    .filters{position:fixed;inset:auto 0 0 0;z-index:62;background:#fff;border-top-left-radius:20px;border-top-right-radius:20px;box-shadow:0 -10px 40px -10px rgba(20,30,45,.3);flex-direction:column;align-items:stretch;padding:24px 22px 28px;transform:translateY(110%);transition:transform .3s ease;max-height:80vh;overflow:auto}
+    .filters.open{transform:translateY(0)}
+    .filters select,.filters .search input{width:100%}
+    .filters .fclose{display:block;align-self:flex-end;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--slate)}
+  }
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  /* Animations & Back to Top */
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0; 
+  }
+  .back-to-top {
+    position: fixed; bottom: 30px; right: 30px; z-index: 99;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--carbon); color: #fff; border: none;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(27,36,48,0.25);
+    opacity: 0; pointer-events: none; transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease; cursor: pointer;
+  }
+  .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-to-top:hover { background: var(--red); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(209,43,29,0.3); }
+  .back-to-top svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+<link rel="stylesheet" href="components/transition.css">
+</head>
+<body>
+
+<!-- ============ TOPBAR (shared) ============ -->
+<div class="topbar" id="topbar">
+  <div class="bar-shell"><div class="bar">
+    <a href="index.html" class="logo" aria-label="International Business Conferences home"><img class="logo-white" src="assets/IBC_Logo_white.svg" alt="International Business Conferences"><img class="logo-color" src="assets/IBC_Logo.svg" alt="International Business Conferences"></a>
+    <nav class="navlinks">
+      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html" class="active" aria-current="page">Events</a>
+      <a href="gallery.html">Media</a><a href="team.html">Team</a><a href="index.html#contact" class="btn-cta">Enquire now</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-links">
+      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html" class="active" aria-current="page">Events</a>
+      <a href="gallery.html">Media</a><a href="team.html">Team</a>
+    </nav>
+    <a href="index.html#contact" class="btn btn-red">Enquire now</a>
+  </div>
+</div>
+
+<!-- ============ HERO (about-page banner shell) ============ -->
+<section class="hero"><div class="hero-card">
+  <div class="hero-blob-b"></div>
+  <div class="hero-blob-r"></div>
+  <div class="hero-grid">
+    <div class="hero-inner">
+      <nav class="hero-crumb"><a href="index.html">Home</a><span>›</span><span class="current">Events</span></nav>
+      <h1>Where Indian industry meets.</h1>
+      <p>Conferences, awards, summits, workshops and roundtables across 28+ industries — explore what's coming up and look back at past editions.</p>
+    </div>
+    <div class="hero-visual"><img src="assets/About/about_hero.png" alt="An IBC conference in session"></div>
+  </div>
+</div></section>
+
+<!-- ============ STICKY CONTROLS (tabs + filters) ============ -->
+<div class="controls" id="controls">
+  <div class="controls-inner">
+    <div class="ev-tabs" id="evTabs">
+      <button data-tab="all" class="active">All <span class="ct" id="ctAll"></span></button>
+      <button data-tab="upcoming">Upcoming <span class="ct" id="ctUpcoming"></span></button>
+      <button data-tab="past">Past <span class="ct" id="ctPast"></span></button>
+    </div>
+    <div class="sep" style="width:1px;height:32px;background:var(--line);margin:0 12px;display:none;"></div>
+    <button class="btn btn-outline-dark filter-toggle" id="filterToggle" type="button">Filter &amp; Sort <span id="filterCount"></span></button>
+    <div class="filters" id="filters">
+      <button class="fclose" id="fclose" type="button" aria-label="Close">×</button>
+      <div class="fsel"><select id="fType">
+        <option value="">All types</option>
+        <option value="conf-awards">Conference &amp; Awards</option>
+        <option value="conf">Conference</option>
+        <option value="workshop">Workshop</option>
+        <option value="roundtable">Roundtable</option>
+        <option value="webinar">Webinar</option>
+        <option value="summit">Summit</option>
+      </select></div>
+      <div class="fsel date-range ant-picker">
+        <div class="picker-wrap"><input type="date" id="fDateStart" data-placeholder="Start date" required></div>
+        <span class="arrow">→</span>
+        <div class="picker-wrap"><input type="date" id="fDateEnd" data-placeholder="End date" required></div>
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="text" id="fSearch" placeholder="Search by event name…"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RESULTS HEADER ============ -->
+<div class="results-head">
+  <div style="display:flex;align-items:center;flex-wrap:wrap;gap:16px;flex:1;justify-content:space-between;">
+    <div class="results-count" id="resultsCount"></div>
+    <div class="chips" id="chips" style="margin-top:0;justify-content:flex-end;"></div>
+  </div>
+</div>
+
+<!-- ============ EVENTS GRID ============ -->
+<div class="ev-wrap">
+  <div id="evContainer"></div>
+  <div class="empty" id="emptyState" style="display:none">
+    <div class="e-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+    <h3 id="emptyTitle">No events match your filters</h3>
+    <p id="emptyText">Try removing a filter or adjusting your search.</p>
+    <button class="btn btn-outline-dark" id="emptyClear">Clear all filters</button>
+  </div>
+  <div class="load-wrap" id="loadWrap">
+    <button class="btn btn-primary" id="loadMore"><span>Load more events</span></button>
+    <div class="load-note" id="loadNote"></div>
+  </div>
+</div>
+
+<!-- ============ DUAL CTA (shared component) ============ -->
+<section class="section cta-duo-section" style="padding:84px 0 84px">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-half reveal cta-speak">
+        <div class="cta-info">
+          <h3>Want to speak at an IBC event?</h3>
+          <p>We host 1,500+ speakers annually. If you lead a function we cover, we'd like to hear from you.</p>
+          <a href="index.html#contact" class="btn btn-red">Speak with us</a>
+        </div>
+        <div class="cta-pic"><img src="assets/About/cta_speaker.png" alt="Presenter speaking at an IBC event"></div>
+      </div>
+      <div class="cta-half reveal cta-inhouse">
+        <div class="cta-info">
+          <h3>Bringing IBC in-house?</h3>
+          <p>Custom training designed for your context and led by industry experts. We've trained teams at ONGC, Reliance, and SRF.</p>
+          <a href="index.html#contact" class="btn btn-outline-dark">Enquire now</a>
+        </div>
+        <div class="cta-pic"><img src="assets/About/cta_inhouse.png" alt="In-house corporate training consultant"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer></footer>
+
+<script src="components/footer.js"></script>
+<script>
+  /* ---------------- Event data ---------------- */
+  const IND = {pharma:"Pharma & Biotech",hr:"HR & L&D",safety:"Safety / HSSE",mfg:"Manufacturing & Engineering",realestate:"Real Estate & Construction",procurement:"Contract & Procurement",finance:"Finance & Operations",it:"Information Technology",logistics:"Logistics & Maritime",other:"Cross-industry"};
+  const IMG = ["assets/events/event 1.jpg","assets/events/event 2.jpg","assets/events/event 3.jpg","assets/events/event 4.jpg","assets/marque/marque-1.jpg","assets/marque/marque-2.jpg","assets/marque/marque-3.jpg","assets/marque/marque-4.jpg","assets/marque/marque-5.jpg","assets/marque/marque-6.jpg","assets/marque/marque-7.jpg"];
+
+  const EVENTS = [
+    // ---- Upcoming ----
+    {title:"PeopleTech Summit & Awards 2026", edition:"2nd Edition", industry:"hr", type:"conf-awards", format:"In-person", date:"2026-08-07", location:"Pune", status:"open"},
+    {title:"Manufacturing 5.0 Conference & Awards 2026", edition:"1st Edition", industry:"mfg", type:"conf-awards", format:"In-person", date:"2026-09-18", location:"Mumbai", status:"open"},
+    {title:"IBC Safe India Conclave & Awards 2026", edition:"1st Edition", industry:"safety", type:"conf-awards", format:"In-person", date:"2026-10-09", location:"Delhi", status:"coming"},
+    {title:"People Excellence & Leadership Conference & Awards 2026", edition:"3rd Edition", industry:"hr", type:"conf-awards", format:"In-person", date:"2026-07-24", location:"Bengaluru", status:"open"},
+    {title:"IBC Prestigious OHS&E Excellence Awards 2026", edition:"2nd Edition", industry:"safety", type:"conf-awards", format:"In-person", date:"2026-11-13", location:"Mumbai", status:"coming"},
+    {title:"IBC AGNI Suraksha Puraskar 2026", edition:"1st Edition", industry:"safety", type:"conf-awards", format:"In-person", date:"2026-07-02", location:"Pune", status:"live"},
+    {title:"Asia L&D Employer Branding Conference & Awards 2026", edition:"2nd Edition", industry:"hr", type:"conf-awards", format:"Hybrid", date:"2026-09-04", location:"Mumbai", status:"open"},
+    {title:"2nd National Summit on Contract & Procurement Management", edition:"2nd Edition", industry:"procurement", type:"summit", format:"In-person", date:"2026-08-21", location:"Delhi", status:"coming"},
+    // ---- Past ----
+    {title:"PeopleTech Summit & Awards 2025", edition:"1st Edition", industry:"hr", type:"conf-awards", format:"In-person", date:"2025-08-08", location:"Pune", status:"past", stats:"180 delegates · 22 speakers · 18 awards", gallery:true, next:true},
+    {title:"RealCon Conference & Awards 2025", edition:"1st Edition", industry:"realestate", type:"conf-awards", format:"In-person", date:"2025-07-31", location:"Mumbai", status:"past", stats:"160 delegates · 16 speakers", gallery:true},
+    {title:"The IBC Prestigious OHS&E Excellence Awards 2025", edition:"1st Edition", industry:"safety", type:"conf-awards", format:"In-person", date:"2025-06-20", location:"Delhi", status:"past", stats:"220 delegates · 20 awards", gallery:true, next:true},
+    {title:"Zaggle — Save Smart Summit 2026", edition:"Bespoke", industry:"finance", type:"summit", format:"In-person", date:"2026-04-18", location:"Bengaluru", status:"past", stats:"90 senior finance leaders"},
+    {title:"Cloudthat — Building the Workforce (CXO Roundtable)", edition:"Bespoke", industry:"hr", type:"roundtable", format:"In-person", date:"2026-04-11", location:"Hyderabad", status:"past", stats:"22 CXOs"},
+    {title:"Talent, Workforce & Capability Transformation for the AI Era", edition:"Bespoke", industry:"hr", type:"roundtable", format:"In-person", date:"2026-04-04", location:"Delhi", status:"past", stats:"18 CHROs"},
+    {title:"Nuts and Bolts of Construction Safety", edition:"1st Edition", industry:"safety", type:"workshop", format:"In-person", date:"2025-05-15", location:"Mumbai", status:"past", stats:"2-day workshop"},
+    {title:"2nd Edition People Excellence Conference", edition:"2nd Edition", industry:"hr", type:"conf-awards", format:"In-person", date:"2025-03-12", location:"Bengaluru", status:"past", stats:"240 delegates · 20 speakers", next:true},
+    {title:"Asia L&D 2-Day Workshop", edition:"1st Edition", industry:"hr", type:"workshop", format:"In-person", date:"2025-02-26", location:"Mumbai", status:"past", stats:"2-day workshop"},
+    {title:"1st Edition People Excellence Workshop", edition:"1st Edition", industry:"hr", type:"workshop", format:"In-person", date:"2024-11-19", location:"Pune", status:"past", stats:"1-day workshop"},
+    {title:"Turn your L&D Team into AI-Powered Creators", edition:"Bespoke", industry:"hr", type:"workshop", format:"Virtual", date:"2024-10-08", location:"Online", status:"past", stats:"Virtual masterclass"}
+  ];
+  // assign a stable image to each
+  EVENTS.forEach((e,i) => e.img = IMG[i % IMG.length]);
+
+  const TYPE_LABEL = {"conf-awards":"Conference & Awards","conf":"Conference","workshop":"Workshop","roundtable":"Roundtable","webinar":"Webinar","summit":"Summit"};
+  const STATUS = {
+    coming:{cls:"b-coming", label:"Coming Soon", cta:"Notify Me"},
+    open:{cls:"b-open", label:"Open", cta:"Register Now"},
+    live:{cls:"b-live", label:"Live Now", cta:"Join Now"},
+    past:{cls:"b-past", label:"Past Edition", cta:"View Highlights"}
+  };
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function fmtDate(iso){ const d=new Date(iso+"T00:00:00"); return d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(); }
+
+  /* ---------------- State ---------------- */
+  const state = { tab:"all", type:"", dateStart:"", dateEnd:"", q:"", limit:9 };
+
+  const $ = s => document.querySelector(s);
+  const container = $("#evContainer");
+
+  function isUpcoming(e){ return e.status !== "past"; }
+
+  function getFiltered(){
+    let list = EVENTS.filter(e => state.tab==="all" ? true : (state.tab==="upcoming" ? isUpcoming(e) : !isUpcoming(e)));
+    if (state.type) list = list.filter(e => e.type === state.type);
+    if (state.dateStart) list = list.filter(e => e.date >= state.dateStart);
+    if (state.dateEnd) list = list.filter(e => e.date <= state.dateEnd);
+    if (state.q){ const q = state.q.toLowerCase(); list = list.filter(e => (e.title+" "+IND[e.industry]+" "+e.location).toLowerCase().includes(q)); }
+    list.sort((a,b) => (state.tab==="upcoming" ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)));
+    return list;
+  }
+
+  function cardHTML(e, index = 0){
+    const s = STATUS[e.status];
+    const dateLabel = e.status==="past" ? "Held on "+fmtDate(e.date) : fmtDate(e.date);
+    const delay = (index * 0.1) + "s";
+    const primary = e.status==="past"
+      ? ''
+      : '<a href="eventdetail.html#register" class="btn btn-'+(e.status==="open"?"red":(e.status==="live"?"red":"outline-dark"))+'"><span>'+s.cta+'</span></a>';
+    return '<article class="ecard animate-in'+(e.status==="past"?" is-past":"")+'" style="animation-delay:'+delay+'" data-href="eventdetail.html">'
+      + '<div class="ecard-pic"><img loading="lazy" src="'+e.img+'" alt="'+e.title+'"></div>'
+      + '<div class="ecard-body">'
+        + '<div class="ecard-tags"><span class="ecard-tag ecard-tag-'+(e.type||'other')+'">'+TYPE_LABEL[e.type]+'</span><span class="ecard-edition-b">'+e.edition+'</span></div>'
+        + '<h3>'+e.title+'</h3>'
+        + '<div class="ecard-meta">'
+          + '<span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>'+dateLabel+'</span>'
+          + '<span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+e.location+'</span>'
+        + '</div>'
+        + '<div class="ecard-actions">'+primary+'<a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>'
+      + '</div></article>';
+  }
+
+  function render(){
+    const all = getFiltered();
+    const shown = all.slice(0, state.limit);
+    container.innerHTML = "";
+
+    // group by year for Past and All views (sorted by date)
+    if (state.tab==="past" || state.tab==="all"){
+      let curYear = null, grid = null;
+      shown.forEach((e, idx) => {
+        const y = e.date.slice(0,4);
+        if (y !== curYear){
+          curYear = y;
+          const sep = document.createElement("div"); sep.className="year-sep"; sep.textContent=y; container.appendChild(sep);
+          grid = document.createElement("div"); grid.className="ev-grid"; container.appendChild(grid);
+        }
+        grid.insertAdjacentHTML("beforeend", cardHTML(e, idx));
+      });
+    } else {
+      const grid = document.createElement("div"); grid.className="ev-grid";
+      grid.innerHTML = shown.map((e, idx) => cardHTML(e, idx)).join("");
+      container.appendChild(grid);
+    }
+
+    // card click → detail
+    container.querySelectorAll(".ecard").forEach(card => {
+      card.addEventListener("click", ev => { if (!ev.target.closest("a")) location.href = card.dataset.href; });
+    });
+
+    const tabWord = state.tab==="all" ? "" : state.tab+" ";
+    $("#resultsCount").innerHTML = all.length ? "Showing <b>"+shown.length+"</b> of <b>"+all.length+"</b> "+tabWord+"events" : "";
+    $("#loadWrap").style.display = all.length > state.limit ? "block" : "none";
+    $("#loadNote").textContent = all.length ? "Showing "+shown.length+" of "+all.length+" events" : "";
+
+    const empty = all.length === 0;
+    $("#emptyState").style.display = empty ? "block" : "none";
+    container.style.display = empty ? "none" : "block";
+    if (empty){
+      const anyFilter = state.type||state.q;
+      $("#emptyTitle").textContent = anyFilter ? "No events match your filters" : "No "+tabWord+"events to show";
+      $("#emptyText").textContent = anyFilter ? "Try removing a filter or adjusting your search." : "Check back soon — or sign up for event announcements.";
+      $("#emptyClear").style.display = anyFilter ? "inline-flex" : "none";
+    }
+    renderChips();
+    syncURL();
+  }
+
+  /* ---------------- Chips ---------------- */
+  function renderChips(){
+    const chips = $("#chips"); chips.innerHTML = "";
+    const add = (label, key) => {
+      const c = document.createElement("span"); c.className="chip";
+      c.innerHTML = label+'<button aria-label="Remove"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+      c.querySelector("button").addEventListener("click", () => clearFilter(key));
+      chips.appendChild(c);
+    };
+    if (state.type) add(TYPE_LABEL[state.type], "type");
+    if (state.dateStart) add("From: "+fmtDate(state.dateStart), "dateStart");
+    if (state.dateEnd) add("To: "+fmtDate(state.dateEnd), "dateEnd");
+    if (state.q) add('"'+state.q+'"', "q");
+    if (state.type||state.q||state.dateStart||state.dateEnd){
+      const clr = document.createElement("span"); clr.className="chip-clear"; clr.textContent="Clear all filters";
+      clr.addEventListener("click", clearAll); chips.appendChild(clr);
+    }
+    const n = [state.type,state.q,state.dateStart,state.dateEnd].filter(Boolean).length;
+    $("#filterCount").textContent = n ? "("+n+")" : "";
+  }
+  function clearFilter(key){
+    state[key] = "";
+    if (key==="type") $("#fType").value="";
+    if (key==="q") $("#fSearch").value="";
+    if (key==="dateStart") $("#fDateStart").value="";
+    if (key==="dateEnd") $("#fDateEnd").value="";
+    state.limit = 9; render();
+  }
+  function clearAll(){
+    state.type=state.q=state.dateStart=state.dateEnd="";
+    $("#fType").value=""; $("#fSearch").value="";
+    $("#fDateStart").value=""; $("#fDateEnd").value="";
+    state.limit = 9; render();
+  }
+
+  /* ---------------- Tab toggle ---------------- */
+  function setTab(tab){
+    state.tab = tab;
+    document.querySelectorAll("#evTabs button").forEach(b => b.classList.toggle("active", b.dataset.tab===tab));
+    state.limit = 9; render();
+  }
+
+  /* ---------------- Counts ---------------- */
+  (function counts(){
+    const up = EVENTS.filter(isUpcoming).length, past = EVENTS.filter(e=>!isUpcoming(e)).length;
+    $("#ctAll").textContent = "("+EVENTS.length+")"; $("#ctUpcoming").textContent = "("+up+")"; $("#ctPast").textContent = "("+past+")";
+  })();
+
+  /* ---------------- URL sync ---------------- */
+  function syncURL(){
+    const p = new URLSearchParams();
+    p.set("tab", state.tab);
+    if (state.type) p.set("type", state.type);
+    if (state.dateStart) p.set("dateStart", state.dateStart);
+    if (state.dateEnd) p.set("dateEnd", state.dateEnd);
+    if (state.q) p.set("q", state.q);
+    history.replaceState(null, "", "?"+p.toString());
+  }
+  function readURL(){
+    const p = new URLSearchParams(location.search);
+    const t = p.get("tab"); if (t==="past"||t==="upcoming"||t==="all") state.tab=t;
+    state.type = p.get("type")||""; state.q = p.get("q")||"";
+    state.dateStart = p.get("dateStart")||""; state.dateEnd = p.get("dateEnd")||"";
+    $("#fType").value=state.type; $("#fSearch").value=state.q;
+    $("#fDateStart").value=state.dateStart; $("#fDateEnd").value=state.dateEnd;
+  }
+
+  /* ---------------- Wire up ---------------- */
+  document.querySelectorAll("#evTabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+  $("#fType").addEventListener("change", e => { state.type=e.target.value; state.limit=9; render(); });
+  $("#fDateStart").addEventListener("change", e => { state.dateStart=e.target.value; state.limit=9; render(); });
+  $("#fDateEnd").addEventListener("change", e => { state.dateEnd=e.target.value; state.limit=9; render(); });
+  $("#fSearch").addEventListener("input", e => { state.q=e.target.value.trim(); state.limit=9; render(); });
+  $("#loadMore").addEventListener("click", () => { state.limit += 9; render(); });
+  $("#emptyClear").addEventListener("click", clearAll);
+  // mobile filter drawer
+  $("#filterToggle").addEventListener("click", () => $("#filters").classList.add("open"));
+  $("#fclose").addEventListener("click", () => $("#filters").classList.remove("open"));
+
+  /* ---------------- Topbar + drawer ---------------- */
+  (() => { const t=$("#topbar"); const u=()=>t.classList.toggle("scrolled",scrollY>50); u(); addEventListener("scroll",u); })();
+  (() => {
+    const menuBtn=$("#menuBtn"), drawer=$("#mobileDrawer"); if(!menuBtn||!drawer) return;
+    const close=()=>{drawer.classList.remove("show");menuBtn.classList.remove("active");document.body.style.overflow="";setTimeout(()=>drawer.classList.remove("open"),250);};
+    const open=()=>{drawer.classList.add("open");requestAnimationFrame(()=>drawer.classList.add("show"));menuBtn.classList.add("active");document.body.style.overflow="hidden";};
+    menuBtn.addEventListener("click",()=>drawer.classList.contains("open")?close():open());
+    drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",close));
+  })();
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+  /* ---------------- Init ---------------- */
+  readURL();
+  document.querySelectorAll("#evTabs button").forEach(b => b.classList.toggle("active", b.dataset.tab===state.tab));
+  render();
+</script>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+  window.addEventListener("scroll", () => {
+    const btn = document.getElementById("backToTop");
+    if(window.scrollY > 400) btn.classList.add("show");
+    else btn.classList.remove("show");
+  });
+  document.getElementById("backToTop").addEventListener("click", () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>
+</body>
+</html>

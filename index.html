@@ -7,7 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components/hero.css">
 <link rel="stylesheet" href="components/cta-duo.css">
+<link rel="stylesheet" href="components/card.css">
+<link rel="stylesheet" href="components/footer.css">
 <style>
   :root{
     --red:#D12B1D; --red-dark:#A8190D;
@@ -67,13 +70,13 @@
   .navlinks a:hover{background:rgba(255,255,255,.12);color:#fff}
   .navlinks a.active{color:#fff}
   .topbar.scrolled .navlinks a{color:var(--carbon)}
-  .topbar.scrolled .navlinks a:hover{background:rgba(10,30,50,.07);color:var(--carbon)}
+  .topbar.scrolled .navlinks a:not(.btn-cta):hover{background:rgba(10,30,50,.07);color:var(--carbon)}
   .topbar.scrolled .navlinks a.active{color:var(--red)}
   .navlinks a.btn-cta{position:relative;overflow:hidden;background:var(--red);color:#fff;margin-left:10px}
   .navlinks a.btn-cta:hover{background:var(--red-dark)}
   .topbar.scrolled .navlinks a.btn-cta{color:#fff}
   .topbar.scrolled .navlinks a.btn-cta:hover{background:var(--red-dark);color:#fff}
-  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
+  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
   .navlinks a.btn-cta:hover::before{left:130%}
   .menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:50%;width:44px;height:44px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;flex-shrink:0;z-index:61;position:relative;transition:background .35s,border-color .35s}
   .menu-btn span{width:18px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .25s ease,background .35s ease}
@@ -318,50 +321,18 @@
 
   .ev-scroll-container{position:relative;width:100%;z-index:1;overflow:hidden;padding:0}
   .ev-grid-scroll{display:flex;gap:24px;overflow-x:auto;scroll-behavior:smooth;
-    padding: 24px max(28px, calc((100vw - var(--maxw)) / 2 + 28px)) 40px;
+    padding: 24px max(28px, calc((100vw - var(--maxw)) / 2 + 28px)) 16px;
     scrollbar-width:none;cursor:grab;user-select:none;-webkit-user-select:none}
   .ev-grid-scroll::-webkit-scrollbar{display:none}
-  .ev-grid-scroll.grabbing, .ev-grid-scroll.grabbing .ev, .ev-grid-scroll.grabbing .ev *{cursor:grabbing !important}
+  .ev-grid-scroll.grabbing, .ev-grid-scroll.grabbing .ecard, .ev-grid-scroll.grabbing .ecard *{cursor:grabbing !important}
 
-  .ev{flex:0 0 320px;width:320px;background:#ffffff;border:none;border-radius:16px;
-    overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;
-    box-shadow:0 8px 30px rgba(0,0,0,.15);cursor:grab}
-  .ev *{cursor:inherit}
-  .ev a, .ev button, .ev .reg, .ev a *, .ev button *, .ev .reg *{cursor:pointer !important}
-  .ev:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.25)}
-  .ev a, .ev button, .ev .reg{cursor:pointer}
-  
-  .ev .pic{aspect-ratio:16/9;background:#0A2540;position:relative;overflow:hidden;display:block}
-  .ev .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-  .ev:hover .pic img{transform:scale(1.05)}
-  
-  .ev .body{padding:14px 24px 24px;display:flex;flex-direction:column;flex:1}
-  
-  .ev-meta{display:flex;gap:16px;margin-bottom:12px;font-size:0.82rem;color:var(--slate)}
-  .ev-date, .ev-loc{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--graphite)}
-  .ev-meta svg{width:14px;height:14px;color:var(--red);flex-shrink:0;stroke-width:2.2}
-  
-  .ev h3{font-size:1.35rem;color:#000000;font-weight:600;line-height:1.32;margin-bottom:14px;
-    min-height:2.64em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  
-  .tag-row{margin-top:0;margin-bottom:12px}
-  .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;
-    text-transform:uppercase;padding:5px 12px;border-radius:100px}
-  
-  /* Color-coded tags */
-  .tag-conf{background:#FFEAE8;color:var(--red)}
-  .tag-conclave{background:#E1F1FB;color:#0A5CA0}
-  .tag-summit{background:#FFF2DC;color:#B8860B}
-  .tag-bespoke{background:#EAFaf1;color:#27AE60}
-  .tag-roundtable{background:#F0EFF5;color:#6C5CE7}
-  
-  .ev .reg{font-weight:600;color:var(--carbon);font-size:.94rem;display:inline-flex;align-items:center;gap:7px;transition:color .2s;text-decoration:none}
-  .ev .reg svg{width:15px;height:15px;transition:transform .2s;stroke-width:2.4}
-  .ev:hover .reg{color:var(--red)} 
-  .ev:hover .reg svg{transform:translateX(4px)}
+  /* Horizontal scroll overrides for .ecard */
+  .ev-grid-scroll .ecard { flex: 0 0 320px; width: 320px; cursor: grab; background: #fff; margin: 0; border: none; }
+  .ev-grid-scroll .ecard * { cursor: inherit; }
+  .ev-grid-scroll .ecard a, .ev-grid-scroll .ecard button, .ev-grid-scroll .ecard .btn, .ev-grid-scroll .ecard a * { cursor: pointer !important; }
 
   /* Controls and buttons */
-  .ev-controls{display:flex;justify-content:space-between;align-items:center;margin-top:32px;position:relative;z-index:1}
+  .ev-controls{display:flex;justify-content:space-between;align-items:center;margin-top:16px;position:relative;z-index:1}
   #events .btn-outline{color:#ffffff;border-color:rgba(255,255,255,.35);background:transparent}
   #events .btn-outline:hover{background:var(--red);border-color:var(--red);color:#ffffff;transform:translateY(-2px);box-shadow:0 6px 22px -4px rgba(209,43,29,.45)}
   
@@ -1003,7 +974,22 @@
     .section{padding:64px 0}
     .ev-grid,.t-grid,.why-grid,.stat-grid,.f-top{grid-template-columns:1fr}
   }
+
+  /* Back to Top */
+  .back-to-top {
+    position: fixed; bottom: 30px; right: 30px; z-index: 99;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--carbon); color: #fff; border: none;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(27,36,48,0.25);
+    opacity: 0; pointer-events: none; transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease; cursor: pointer;
+  }
+  .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-to-top:hover { background: var(--red); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(209,43,29,0.3); }
+  .back-to-top svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 </style>
+<link rel="stylesheet" href="components/transition.css">
 </head>
 <body>
 
@@ -1011,14 +997,14 @@
   <div class="bar-shell"><div class="bar">
     <a href="#" class="logo" aria-label="International Business Conferences home"><img class="logo-white" src="assets/ibc-logo-white-2.png" alt="International Business Conferences"><img class="logo-color" src="assets/ibc-logo-2.png" alt="International Business Conferences"></a>
     <nav class="navlinks">
-      <a href="about2.html">About</a><a href="service.html">Services</a><a href="#events">Events</a>
+      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html">Events</a>
       <a href="gallery.html">Media</a><a href="team.html">Team</a><a href="#contact" class="btn-cta">Enquire now</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div></div>
   <div class="mobile-drawer" id="mobileDrawer">
     <nav class="mobile-links">
-      <a href="about2.html">About</a><a href="service.html">Services</a><a href="#events">Events</a>
+      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html">Events</a>
       <a href="gallery.html">Media</a><a href="team.html">Team</a>
     </nav>
     <a href="#contact" class="btn btn-red">Enquire now</a>
@@ -1038,11 +1024,11 @@
     </div>
     <div class="hero-accent"></div>
     <div class="hero-text">
-      <span class="eyebrow on-dark">Trusted by India's enterprises &amp; PSUs since 2001</span>
+      <span class="eyebrow on-dark"><span>Trusted by India's enterprises &amp; PSU<span style="text-transform:lowercase">s</span> since 2001</span></span>
       <h1>Where industry leaders come to <span class="cycle-word" id="cycleWord">connect</span>.</h1>
       <p>25+ years connecting decision-makers with industry experts through conferences, awards, and corporate training.</p>
       <div class="hero-actions">
-        <a href="#events" class="btn btn-primary"><span>Explore Upcoming Events</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="events.html?tab=all" class="btn btn-primary"><span>Explore All Events</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#contact" class="btn btn-ghost"><span>Partner With Us</span></a>
       </div>
     </div>
@@ -1061,11 +1047,11 @@
   <div class="hero-glass left"></div>
   <div class="hero-glass right"></div>
   <div class="hero-new-content">
-    <span class="eyebrow on-dark" style="justify-content: center;">Trusted by India's enterprises &amp; PSUs since 2001</span>
+    <span class="eyebrow on-dark" style="justify-content: center;"><span>Trusted by India's enterprises &amp; PSU<span style="text-transform:lowercase">s</span> since 2001</span></span>
     <h1>Where industry leaders come to <span class="cycle-word" id="cycleWord">connect</span>.</h1>
     <p>25+ years connecting decision-makers with industry experts through conferences, awards, and corporate training.</p>
     <div class="center-actions">
-      <a href="#events" class="btn btn-primary"><span>Explore Upcoming Events</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="events.html?tab=all" class="btn btn-primary"><span>Explore All Events</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a href="#contact" class="btn btn-ghost"><span>Partner With Us</span></a>
     </div>
   </div>
@@ -1209,130 +1195,81 @@
   
   <div class="ev-scroll-container">
     <div class="ev-grid-scroll" id="evGrid">
-      
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%201.jpg" alt="Manufacturing 5.0 Conference &amp; Awards 2026"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-conf">Conference &amp; Awards</span>
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 1.jpg" alt="PeopleTech Summit &amp; Awards 2026"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-conf-awards">Conference &amp; Awards</span><span class="ecard-edition-b">2nd Edition</span></div>
+          <h3>PeopleTech Summit &amp; Awards 2026</h3>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>7 August 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Pune</span>
           </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              31 July 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              New Delhi
-            </span>
-          </div>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-red"><span>Register Now</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 2.jpg" alt="Manufacturing 5.0 Conference &amp; Awards 2026"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-conf-awards">Conference &amp; Awards</span><span class="ecard-edition-b">1st Edition</span></div>
           <h3>Manufacturing 5.0 Conference &amp; Awards 2026</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>18 September 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mumbai</span>
+          </div>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-red"><span>Register Now</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
       </article>
 
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%202.jpg" alt="IBC Safe India Conclave &amp; Awards 2026"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-conclave">Conclave &amp; Awards</span>
-          </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              24 July 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Chennai
-            </span>
-          </div>
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 3.jpg" alt="IBC Safe India Conclave &amp; Awards 2026"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-conf-awards">Conference &amp; Awards</span><span class="ecard-edition-b">1st Edition</span></div>
           <h3>IBC Safe India Conclave &amp; Awards 2026</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>9 October 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Delhi</span>
+          </div>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-outline-dark"><span>Notify Me</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
       </article>
 
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%203.jpg" alt="PeopleTech Summit &amp; Awards 2nd Edition"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-summit">Summit &amp; Awards</span>
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 4.jpg" alt="People Excellence &amp; Leadership Conference &amp; Awards 2026"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-conf-awards">Conference &amp; Awards</span><span class="ecard-edition-b">3rd Edition</span></div>
+          <h3>People Excellence &amp; Leadership Conference &amp; Awards 2026</h3>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>24 July 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bengaluru</span>
           </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              7 August 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Pune
-            </span>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-red"><span>Register Now</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+      
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 1.jpg" alt="IBC Prestigious OHS&amp;E Excellence Awards 2026"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-conf-awards">Conference &amp; Awards</span><span class="ecard-edition-b">2nd Edition</span></div>
+          <h3>IBC Prestigious OHS&amp;E Excellence Awards 2026</h3>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>13 November 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mumbai</span>
           </div>
-          <h3>2nd Edition – PeopleTech Summit &amp; Awards</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-outline-dark"><span>Notify Me</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
       </article>
 
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%204.jpg" alt="Zaggle – Save Smart Summit 2026"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-bespoke">Bespoke Summit</span>
+      <article class="ecard reveal" data-href="eventdetail.html">
+        <div class="ecard-pic"><img loading="lazy" src="assets/events/event 2.jpg" alt="2nd National Summit on Contract &amp; Procurement Management"></div>
+        <div class="ecard-body">
+          <div class="ecard-tags"><span class="ecard-tag ecard-tag-summit">Summit</span><span class="ecard-edition-b">2nd Edition</span></div>
+          <h3>2nd National Summit on Contract &amp; Procurement Management</h3>
+          <div class="ecard-meta">
+            <span class="m"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>21 August 2026</span>
+            <span class="m"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Delhi</span>
           </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              17 April 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Hyderabad
-            </span>
-          </div>
-          <h3>Zaggle – Save Smart Summit 2026</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%202.jpg" alt="Pharma Cleanroom Technology Summit 2026"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-summit">Summit &amp; Awards</span>
-          </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              18 September 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Mumbai
-            </span>
-          </div>
-          <h3>Pharma Cleanroom Technology Summit 2026</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-
-      <article class="ev reveal">
-        <div class="pic"><img src="assets/events/event%201.jpg" alt="Bespoke Energy Leaders Roundtable"></div>
-        <div class="body">
-          <div class="tag-row">
-            <span class="tag tag-roundtable">Executive Roundtable</span>
-          </div>
-          <div class="ev-meta">
-            <span class="ev-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              5 October 2026
-            </span>
-            <span class="ev-loc">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Bengaluru
-            </span>
-          </div>
-          <h3>Bespoke Energy Leaders Roundtable</h3>
-          <a href="#" class="reg">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="ecard-actions"><a href="eventdetail.html#register" class="btn btn-outline-dark"><span>Notify Me</span></a><a href="eventdetail.html" class="vd">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
       </article>
 
@@ -1342,7 +1279,7 @@
   <div class="wrap">
     <div class="ev-controls">
       <div class="ev-left-cta">
-        <a href="#" class="btn btn-outline"><span>See All Upcoming Events</span></a>
+        <a href="events.html?tab=upcoming" class="btn btn-outline"><span>See All Upcoming Events</span></a>
       </div>
       <div class="ev-arrows">
         <button class="ev-arrow-btn" id="evPrev" aria-label="Previous event">
@@ -1420,7 +1357,7 @@
     <div class="stat-col">
       <div class="stat reveal">
         <span class="stat-lbl">Conferences &amp; Awards</span>
-        <div><b>1,500<i>+</i></b><span>events delivered across 16+ sectors</span></div>
+        <div><b>1,500<i>+</i></b><span>events delivered across 28+ sectors</span></div>
       </div>
       <div class="stat reveal">
         <span class="stat-lbl">Workshops &amp; Seminars</span>
@@ -1717,8 +1654,8 @@
         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.014 7.053.072 5.775.131 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.014 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
       </div>
     </div>
-    <div class="f-col"><h4>Company</h4><a href="about2.html">About us</a><a href="service.html">Services</a><a href="#">Team</a><a href="#events">Events</a><a href="#">Gallery</a><a href="#contact">Contact</a></div>
-    <div class="f-col"><h4>Explore</h4><a href="#events">Upcoming Events</a><a href="#">Past Events</a><a href="#industries">Industries</a><a href="#why">Why IBC</a><a href="#">Privacy Policy</a></div>
+    <div class="f-col"><h4>Company</h4><a href="about2.html">About us</a><a href="service.html">Services</a><a href="#">Team</a><a href="events.html">Events</a><a href="#">Gallery</a><a href="#contact">Contact</a></div>
+    <div class="f-col"><h4>Explore</h4><a href="events.html">Upcoming Events</a><a href="events.html?tab=past">Past Events</a><a href="#industries">Industries</a><a href="#why">Why IBC</a><a href="#">Privacy Policy</a></div>
     <div class="f-col f-contact"><h4>Corporate Office</h4>
       <div>12/187 Sukhmani Bldg., V P Road,<br>Andheri West, Mumbai 400058,<br>Maharashtra, India</div>
       <div><b>Call us</b>+91 982 035 4333 · +91 843 353 4326</div>
@@ -2069,5 +2006,19 @@
   };
 </script>
 <script src="components/footer.js"></script>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+  window.addEventListener("scroll", () => {
+    const btn = document.getElementById("backToTop");
+    if(window.scrollY > 500) btn.classList.add("show");
+    else btn.classList.remove("show");
+  });
+  document.getElementById("backToTop").addEventListener("click", () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>
 </body>
 </html>

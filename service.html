@@ -65,13 +65,13 @@
   .navlinks a:hover{background:rgba(255,255,255,.12);color:#fff}
   .navlinks a.active{color:#fff}
   .topbar.scrolled .navlinks a{color:var(--carbon)}
-  .topbar.scrolled .navlinks a:hover{background:rgba(10,30,50,.07);color:var(--carbon)}
+  .topbar.scrolled .navlinks a:not(.btn-cta):hover{background:rgba(10,30,50,.07);color:var(--carbon)}
   .topbar.scrolled .navlinks a.active{color:var(--red)}
   .navlinks a.btn-cta{position:relative;overflow:hidden;background:var(--red);color:#fff;margin-left:10px}
   .navlinks a.btn-cta:hover{background:var(--red-dark)}
   .topbar.scrolled .navlinks a.btn-cta{color:#fff}
   .topbar.scrolled .navlinks a.btn-cta:hover{background:var(--red-dark);color:#fff}
-  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
+  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
   .navlinks a.btn-cta:hover::before{left:130%}
   
   .menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:50%;width:44px;height:44px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;flex-shrink:0;z-index:61;position:relative;transition:background .35s,border-color .35s}
@@ -695,23 +695,24 @@
     .section{padding:60px 0}
   }
 </style>
+<link rel="stylesheet" href="components/transition.css">
 </head>
 <body>
 
 <!-- HEADER & MENU -->
 <div class="topbar" id="topbar">
   <div class="bar-shell"><div class="bar">
-    <a href="ibc-home-v2.html" class="logo" aria-label="International Business Conferences home">
+    <a href="index.html" class="logo" aria-label="International Business Conferences home">
       <img class="logo-white" src="assets/IBC_Logo_white.svg" alt="International Business Conferences">
       <img class="logo-color" src="assets/IBC_Logo.svg" alt="International Business Conferences">
     </a>
     <nav class="navlinks">
       <a href="about2.html">About</a>
       <a href="service.html" class="active" aria-current="page">Services</a>
-      <a href="ibc-home-v2.html#events">Events</a>
+      <a href="events.html">Events</a>
       <a href="gallery.html">Media</a>
       <a href="team.html">Team</a>
-      <a href="ibc-home-v2.html#contact" class="btn-cta">Enquire now</a>
+      <a href="index.html#contact" class="btn-cta">Enquire now</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div></div>
@@ -719,11 +720,11 @@
     <nav class="mobile-links">
       <a href="about2.html">About</a>
       <a href="service.html" class="active" aria-current="page">Services</a>
-      <a href="ibc-home-v2.html#events">Events</a>
+      <a href="events.html">Events</a>
       <a href="gallery.html">Media</a>
       <a href="team.html">Team</a>
     </nav>
-    <a href="ibc-home-v2.html#contact" class="btn btn-red">Enquire now</a>
+    <a href="index.html#contact" class="btn btn-red">Enquire now</a>
   </div>
 </div>
 
@@ -734,9 +735,9 @@
   <div class="hero-blob-r"></div>
   <div class="hero-grid">
     <div class="hero-inner">
-      <nav class="hero-crumb"><a href="ibc-home-v2.html">Home</a><span>›</span><span class="current">Services</span></nav>
+      <nav class="hero-crumb"><a href="index.html">Home</a><span>›</span><span class="current">Services</span></nav>
       <h1>Conferences, training, and the events behind them.</h1>
-      <p>Since 2001, IBC has run its own conferences and awards, produced private events for clients, and delivered in-house training across 16 operationally complex industries.</p>
+      <p>Since 2001, IBC has run its own conferences and awards, produced private events for clients, and delivered in-house training across 28 operationally complex industries.</p>
     </div>
     <div class="hero-visual"><img src="assets/Services/services_hero.png" alt="An IBC conference in session"></div>
   </div>
@@ -802,7 +803,7 @@
             <span>National Summit on Contract &amp; Procurement Management (2nd ed.)</span>
           </div>
           <div class="section-action">
-            <a href="ibc-home-v2.html#events" class="btn btn-outline-dark">See upcoming conferences</a>
+            <a href="events.html" class="btn btn-outline-dark">See upcoming conferences</a>
           </div>
         </div>
 
@@ -820,7 +821,7 @@
             <span>People Excellence (1st ed.)</span>
           </div>
           <div class="section-action">
-            <a href="ibc-home-v2.html#events" class="btn btn-outline-dark">See upcoming workshops</a>
+            <a href="events.html" class="btn btn-outline-dark">See upcoming workshops</a>
           </div>
         </div>
 
@@ -831,7 +832,7 @@
           <p class="section-lead">Shorter online sessions on time-sensitive topics, usually with a small interactive panel.</p>
           <p class="section-body">Webinars are how we run the conversations that don't need a room. A regulatory update, a function-specific deep dive, a panel between three or four practitioners — each runs live, then stays available on demand. The format suits topics where speed matters more than scale.</p>
           <div class="section-action">
-            <a href="ibc-home-v2.html#events" class="btn btn-outline-dark">See upcoming webinars</a>
+            <a href="events.html" class="btn btn-outline-dark">See upcoming webinars</a>
           </div>
         </div>
 
@@ -864,7 +865,7 @@
             <span>Save Smart Summit (Zaggle)</span>
           </div>
           <div class="section-action">
-            <a href="ibc-home-v2.html#contact" class="btn btn-outline-dark">Talk to us about a roundtable</a>
+            <a href="index.html#contact" class="btn btn-outline-dark">Talk to us about a roundtable</a>
           </div>
         </div>
 
@@ -875,7 +876,7 @@
           <p class="section-lead">Full-service event production for organisations that want a private conference, summit, or gala delivered turnkey.</p>
           <p class="section-body">When a client wants to run a multi-day conference, awards gala, leadership summit, or customer event under their own brand, we plan and produce it end-to-end — strategy, agenda design, speaker curation, venue, production, guest management, and on-site delivery. The difference from a bespoke roundtable is scale and format: these are typically multi-day, multi-track, hundreds of attendees, and produced under the client's brand rather than IBC's.</p>
           <div class="section-action">
-            <a href="ibc-home-v2.html#contact" class="btn btn-outline-dark">Enquire about event production</a>
+            <a href="index.html#contact" class="btn btn-outline-dark">Enquire about event production</a>
           </div>
         </div>
 
@@ -902,7 +903,7 @@
             <span>Vedanta</span>
           </div>
           <div class="section-action">
-            <a href="ibc-home-v2.html#contact" class="btn btn-outline-dark">Enquire about in-house training</a>
+            <a href="index.html#contact" class="btn btn-outline-dark">Enquire about in-house training</a>
           </div>
         </div>
 
@@ -921,7 +922,7 @@
         <div class="cta-info">
           <h3>Want to speak at an IBC event?</h3>
           <p>We host 1,500+ speakers annually. If you lead a function we cover, we'd like to hear from you.</p>
-          <a href="ibc-home-v2.html#contact" class="btn btn-red">Speak with us</a>
+          <a href="index.html#contact" class="btn btn-red">Speak with us</a>
         </div>
         <div class="cta-pic">
           <img src="assets/About/cta_speaker.png" alt="Presenter speaking at an IBC event">
@@ -932,7 +933,7 @@
         <div class="cta-info">
           <h3>Bringing IBC in-house?</h3>
           <p>Custom training designed for your context and led by industry experts. We've trained teams at ONGC, Reliance, and SRF.</p>
-          <a href="ibc-home-v2.html#contact" class="btn btn-outline-dark">Enquire now</a>
+          <a href="index.html#contact" class="btn btn-outline-dark">Enquire now</a>
         </div>
         <div class="cta-pic">
           <img src="assets/About/cta_inhouse.png" alt="In-house corporate training consultant">
@@ -947,10 +948,10 @@
   <div class="f-top">
     <div class="f-brand">
       <div class="f-logo-toggle-wrap">
-        <a href="ibc-home-v2.html" class="logo logo-colored-patch" id="fLogoColored">
+        <a href="index.html" class="logo logo-colored-patch" id="fLogoColored">
           <span class="logo-patch"><img src="assets/IBC_Logo.svg" alt="International Business Conferences"></span>
         </a>
-        <a href="ibc-home-v2.html" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
+        <a href="index.html" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
           <img src="assets/IBC_Logo_white.svg" alt="International Business Conferences" style="height: 56px; width: auto;">
         </a>
       </div>
@@ -967,15 +968,15 @@
       <a href="about2.html">About us</a>
       <a href="service.html" class="active">Services</a>
       <a href="about2.html#team">Team</a>
-      <a href="ibc-home-v2.html#events">Events</a>
+      <a href="events.html">Events</a>
       <a href="#">Gallery</a>
-      <a href="ibc-home-v2.html#contact">Contact</a>
+      <a href="index.html#contact">Contact</a>
     </div>
     <div class="f-col">
       <h4>Explore</h4>
-      <a href="ibc-home-v2.html#events">Upcoming Events</a>
+      <a href="events.html">Upcoming Events</a>
       <a href="#">Past Events</a>
-      <a href="ibc-home-v2.html#industries">Industries</a>
+      <a href="index.html#industries">Industries</a>
       <a href="about2.html#why">Why IBC</a>
       <a href="#">Privacy Policy</a>
     </div>
