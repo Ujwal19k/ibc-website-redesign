@@ -43,44 +43,7 @@
   .btn.btn-outline-dark:hover{background:var(--red);color:#fff;border-color:var(--red)}
 
   /* ============ TOPBAR (shared) ============ */
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;padding:16px 0 0;transition:padding .35s ease}
-  .topbar.scrolled{padding:14px 0 0}
-  .bar-shell{max-width:1200px;margin:0 auto;padding:0 28px;border-radius:20px;border:1px solid transparent;background:transparent;transition:background .35s ease,border-color .35s ease,box-shadow .35s ease,max-width .35s ease}
-  .topbar.scrolled .bar-shell{max-width:1080px;background:var(--paper);border-color:var(--line);box-shadow:0 4px 20px -6px rgba(20,30,45,.14)}
-  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:84px;transition:height .35s ease}
-  .topbar.scrolled .bar{height:78px}
-  .logo{display:flex;align-items:center}
-  .logo img{height:60px;width:auto;display:block;transition:height .35s ease}
-  .topbar.scrolled .logo img{height:48px}
-  .logo .logo-white{display:block}
-  .logo .logo-color{display:none}
-  .topbar.scrolled .logo .logo-white{display:none}
-  .topbar.scrolled .logo .logo-color{display:block}
-  .navlinks{display:flex;align-items:center;gap:2px}
-  .navlinks a{font-size:.92rem;font-weight:500;color:rgba(255,255,255,.88);padding:9px 16px;border-radius:var(--r-pill);transition:background .16s,color .35s}
-  .navlinks a:hover{background:rgba(255,255,255,.12);color:#fff}
-  .navlinks a.active{color:#fff}
-  .topbar.scrolled .navlinks a{color:var(--carbon)}
-  .topbar.scrolled .navlinks a:not(.btn-cta):hover{background:rgba(10,30,50,.07);color:var(--carbon)}
-  .topbar.scrolled .navlinks a.active{color:var(--red)}
-  .navlinks a.btn-cta{position:relative;overflow:hidden;background:var(--red);color:#fff;margin-left:10px}
-  .navlinks a.btn-cta:hover{background:var(--red-dark)}
-  .navlinks a.btn-cta::before{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
-  .navlinks a.btn-cta:hover::before{left:130%}
-  .topbar.scrolled .navlinks a.btn-cta{color:#fff}
-  .menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:50%;width:44px;height:44px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;flex-shrink:0;z-index:61;position:relative;transition:background .35s,border-color .35s}
-  .menu-btn span{width:18px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .25s ease,background .35s ease}
-  .topbar.scrolled .menu-btn{background:var(--paper);border-color:var(--line)}
-  .topbar.scrolled .menu-btn span{background:var(--carbon)}
-  .menu-btn.active span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
-  .menu-btn.active span:nth-child(2){opacity:0}
-  .menu-btn.active span:nth-child(3){transform:translateY(-3.5px) rotate(-45deg)}
-  .mobile-drawer{display:none;position:fixed;inset:0;z-index:59;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);flex-direction:column;justify-content:space-between;padding:108px 28px 40px;opacity:0;transform:scale(.96);transition:opacity .25s ease,transform .25s ease}
-  .mobile-drawer.open{display:flex}
-  .mobile-drawer.show{opacity:1;transform:scale(1)}
-  .mobile-links{display:flex;flex-direction:column}
-  .mobile-links a{font-size:1.15rem;font-weight:500;color:var(--carbon);padding:16px 4px;border-bottom:1px solid var(--line)}
-  .mobile-drawer .btn{width:100%;justify-content:center}
+
 
   /* ============ INTRO STRIP ============ */
   .intro{padding:48px 0 8px;text-align:center}
@@ -177,7 +140,7 @@
     .filters .fclose{display:block;align-self:flex-end;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--slate)}
   }
 
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal{opacity:1;transform:none;transition:none}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
@@ -204,27 +167,12 @@
   .back-to-top svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 <link rel="stylesheet" href="components/transition.css">
+<link rel="stylesheet" href="components/header.css">
 </head>
 <body>
 
 <!-- ============ TOPBAR (shared) ============ -->
-<div class="topbar" id="topbar">
-  <div class="bar-shell"><div class="bar">
-    <a href="index.html" class="logo" aria-label="International Business Conferences home"><img class="logo-white" src="assets/IBC_Logo_white.svg" alt="International Business Conferences"><img class="logo-color" src="assets/IBC_Logo.svg" alt="International Business Conferences"></a>
-    <nav class="navlinks">
-      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html" class="active" aria-current="page">Events</a>
-      <a href="gallery.html">Media</a><a href="team.html">Team</a><a href="index.html#contact" class="btn-cta">Enquire now</a>
-    </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </div></div>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <nav class="mobile-links">
-      <a href="about2.html">About</a><a href="service.html">Services</a><a href="events.html" class="active" aria-current="page">Events</a>
-      <a href="gallery.html">Media</a><a href="team.html">Team</a>
-    </nav>
-    <a href="index.html#contact" class="btn btn-red">Enquire now</a>
-  </div>
-</div>
+
 
 <!-- ============ HERO (about-page banner shell) ============ -->
 <section class="hero"><div class="hero-card">
@@ -296,7 +244,7 @@
 </div>
 
 <!-- ============ DUAL CTA (shared component) ============ -->
-<section class="section cta-duo-section" style="padding:84px 0 84px">
+<section class="section cta-duo-section" style="padding:70px 0 70px; border-top: 1px solid var(--line);">
   <div class="wrap">
     <div class="cta-grid">
       <div class="cta-half reveal cta-speak">
@@ -526,15 +474,7 @@
   $("#filterToggle").addEventListener("click", () => $("#filters").classList.add("open"));
   $("#fclose").addEventListener("click", () => $("#filters").classList.remove("open"));
 
-  /* ---------------- Topbar + drawer ---------------- */
-  (() => { const t=$("#topbar"); const u=()=>t.classList.toggle("scrolled",scrollY>50); u(); addEventListener("scroll",u); })();
-  (() => {
-    const menuBtn=$("#menuBtn"), drawer=$("#mobileDrawer"); if(!menuBtn||!drawer) return;
-    const close=()=>{drawer.classList.remove("show");menuBtn.classList.remove("active");document.body.style.overflow="";setTimeout(()=>drawer.classList.remove("open"),250);};
-    const open=()=>{drawer.classList.add("open");requestAnimationFrame(()=>drawer.classList.add("show"));menuBtn.classList.add("active");document.body.style.overflow="hidden";};
-    menuBtn.addEventListener("click",()=>drawer.classList.contains("open")?close():open());
-    drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",close));
-  })();
+  /* ---------------- Topbar + drawer (Removed: now handled by components/header.js) ---------------- */
   // reveal
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
@@ -558,5 +498,6 @@
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 </script>
+<script src="components/header.js"></script>
 </body>
 </html>
