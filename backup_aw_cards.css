@@ -1,0 +1,9 @@
+  .aw-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:26px 24px;display:flex;flex-direction:column;position:relative;overflow:hidden;backdrop-filter:blur(4px);transition:transform .12s ease,box-shadow .2s ease,border-color .2s;transform-style:preserve-3d;}
+  .aw-card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .25s;background:radial-gradient(380px circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.06),transparent 65%);pointer-events:none;border-radius:inherit;z-index:0}
+  .aw-card::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .25s;background:radial-gradient(160px circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.09),transparent 70%);pointer-events:none;border-radius:inherit;z-index:0}
+  .aw-card:hover::before,.aw-card:hover::after{opacity:1}
+  .aw-card:hover{box-shadow:0 24px 60px -16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18);border-color:rgba(255,255,255,0.4);transform:translateY(-4px);}
+  .aw-card > * {position:relative;z-index:1}
+  .aw-card h4{font-size:1.06rem;color:#fff;margin-bottom:8px;line-height:1.25;padding-right:110px}
+  .aw-card p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.5;margin-bottom:0;padding-right:110px}
+  .aw-card .btn{position:absolute;top:20px;right:20px;padding:8px 16px;font-size:.82rem;margin:0}
