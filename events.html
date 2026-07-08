@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="components/hero.css">
 <link rel="stylesheet" href="components/cta-duo.css">
 <link rel="stylesheet" href="components/card.css">
-<link rel="stylesheet" href="components/footer.css">
+<link rel="stylesheet" href="components/footer-v2.css">
 <style>
   :root{
     --red:#D12B1D; --red-dark:#A8190D;
@@ -269,7 +269,7 @@
 
 <footer></footer>
 
-<script src="components/footer.js"></script>
+<script src="js%20scripts/footer-v2.js"></script>
 <script>
   /* ---------------- Event data ---------------- */
   const IND = {pharma:"Pharma & Biotech",hr:"HR & L&D",safety:"Safety / HSSE",mfg:"Manufacturing & Engineering",realestate:"Real Estate & Construction",procurement:"Contract & Procurement",finance:"Finance & Operations",it:"Information Technology",logistics:"Logistics & Maritime",other:"Cross-industry"};
@@ -474,7 +474,7 @@
   $("#filterToggle").addEventListener("click", () => $("#filters").classList.add("open"));
   $("#fclose").addEventListener("click", () => $("#filters").classList.remove("open"));
 
-  /* ---------------- Topbar + drawer (Removed: now handled by components/header.js) ---------------- */
+  /* ---------------- Topbar + drawer (Removed: now handled by js scripts/header.js) ---------------- */
   // reveal
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
@@ -498,6 +498,6 @@
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 </script>
-<script src="components/header.js"></script>
+<script src="js%20scripts/header.js"></script>
 </body>
 </html>

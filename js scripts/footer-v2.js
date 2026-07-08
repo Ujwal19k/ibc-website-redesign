@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       .logo-patch {
         background: #ffffff;
-        padding: 8px 16px;
+        padding: 10px 14px;
         border-radius: 8px;
         display: inline-flex;
         align-items: center;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         transition: transform 0.2s;
       }
       .logo-patch img {
-        height: 40px;
+        height: 130px;
         width: auto;
         display: block;
       }
@@ -45,10 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="f-brand">
           <div class="f-logo-toggle-wrap">
             <a href="${isAbout || isServices ? 'index.html' : '#'}" class="logo logo-colored-patch" id="fLogoColored">
-              <span class="logo-patch"><img src="assets/IBC_Logo.svg" alt="International Business Conferences"></span>
-            </a>
-            <a href="${isAbout || isServices ? 'index.html' : '#'}" class="logo logo-white-clean" id="fLogoWhite" style="display: none;">
-              <img src="assets/IBC_Logo_white.svg" alt="International Business Conferences" style="height: 56px; width: auto;">
+              <span class="logo-patch"><img src="assets/IBC_Logo_v2.svg" alt="International Business Conferences"></span>
             </a>
           </div>
           <p>A Mumbai-based B2B events and corporate training company connecting industry experts with decision-makers since 2001.</p>
@@ -98,21 +95,5 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   `;
 
-  // Add click event listeners to toggle the logo between colored on white patch and white clean
-  const fLogoColored = document.getElementById("fLogoColored");
-  const fLogoWhite = document.getElementById("fLogoWhite");
-  if (fLogoColored && fLogoWhite) {
-    function toggleFooterLogo(e) {
-      e.preventDefault();
-      if (fLogoColored.style.display === "none") {
-        fLogoColored.style.display = "inline-flex";
-        fLogoWhite.style.display = "none";
-      } else {
-        fLogoColored.style.display = "none";
-        fLogoWhite.style.display = "inline-flex";
-      }
-    }
-    fLogoColored.addEventListener("click", toggleFooterLogo);
-    fLogoWhite.addEventListener("click", toggleFooterLogo);
-  }
+
 });

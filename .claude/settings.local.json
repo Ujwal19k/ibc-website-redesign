@@ -29,7 +29,9 @@
       "Bash(git update-index *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -q -m ' *)",
+      "Bash(git commit -m 'updated all the states of detail page *)"
     ]
   }
 }
