@@ -25,8 +25,8 @@
   section[id], div[id] { scroll-margin-top: 170px; }
   @media(max-width: 900px) { section[id], div[id] { scroll-margin-top: 156px; } }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;color:var(--graphite);background:var(--mist);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:16px}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--graphite);background:var(--mist);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:16px;overflow-x:clip;}
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -240,6 +240,41 @@
   .sp-card .co{font-size:.82rem;color:var(--red);font-weight:600;margin-top:4px}
   .sp-flag{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);background:rgba(0,96,171,.1);border-radius:var(--r-pill);padding:3px 9px;margin-bottom:10px}
   @media(max-width:860px){.sp-grid{grid-template-columns:1fr 1fr}}
+  
+  /* Single Speaker View & Toggle */
+  .sp-view-toggle { display: inline-flex; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; border: 1px solid rgba(255,255,255,0.15); margin-left: auto; }
+  .sp-view-btn { background: transparent; border: none; color: rgba(255,255,255,0.7); padding: 8px 16px; font-size: 0.85rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+  .sp-view-btn.active { background: #fff; color: var(--navy); }
+  .sp-view-btn:not(.active):hover { color: #fff; }
+  
+  .sp-single-view { display: none; margin-top: 40px; background: transparent; border-radius: 16px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15); color: var(--carbon); text-align: left; }
+  .sp-single-view.active { display: block; animation: fadeUp 0.4s ease forwards; }
+  .sp-single-header { background: var(--navy); color: #fff; padding: 20px 40px; font-size: 1.15rem; font-family: 'Space Grotesk', sans-serif; font-weight: 600; border-bottom: 4px solid var(--red); }
+  .sp-single-content { background: #fff; display: flex; flex-direction: column; gap: 40px; padding: 40px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+  .sp-single-left { text-align: center; flex: 0 0 270px; display: flex; flex-direction: column; align-items: center; }
+  .sp-single-av { width: 205px; height: 205px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 4px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .sp-single-av img { width: 100%; height: 100%; object-fit: cover; }
+  .sp-single-left h4 { font-size: 1.4rem; font-family: 'Space Grotesk', sans-serif; margin: 0; color: var(--navy); }
+  .sp-single-right { flex: 1; }
+  .sp-single-titles { display: flex; flex-direction: column; gap: 16px; background: rgba(227, 24, 55, 0.05); padding: 24px; border-radius: 12px; margin-bottom: 28px; }
+  .sp-single-titles strong { color: var(--navy); font-weight: 700; }
+  .sp-single-bio p { font-size: 0.96rem; line-height: 1.7; margin-bottom: 18px; color: var(--graphite); }
+  .sp-single-bio p:last-child { margin-bottom: 0; }
+  .sp-single-bio strong { color: var(--navy); font-weight: 600; }
+  
+  .sp-single-topics { margin-bottom: 24px; padding: 24px; background: rgba(0, 96, 171, 0.05); border-radius: 12px; }
+  .sp-single-topics h5 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+  .sp-single-topics ul { list-style: none; padding: 0; margin: 0; }
+  .sp-single-topics li { position: relative; padding-left: 24px; font-size: 0.94rem; line-height: 1.6; margin-bottom: 12px; color: var(--carbon); }
+  .sp-single-topics li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
+  
+  .sp-read-more { display: inline-flex; align-items: center; gap: 6px; font-size: 0.92rem; font-weight: 600; color: var(--blue); margin-bottom: 18px; text-decoration: none; transition: color 0.2s; }
+  .sp-read-more:hover { color: var(--red); }
+  .sp-read-more svg { width: 14px; height: 14px; transition: transform 0.3s; }
+  .sp-read-more.open svg { transform: rotate(180deg); }
+  
+  @media(min-width: 860px) { .sp-single-content { flex-direction: row; align-items: flex-start; } .sp-single-left { position: -webkit-sticky; position: sticky; top: 200px; height: max-content; align-self: flex-start; z-index: 10; margin-bottom: 40px; } }
+  @media(max-width: 640px) { .sp-single-header { padding: 16px 20px; font-size: 1rem; } .sp-single-content { padding: 24px; } }
   /* speaker modal */
   .modal-overlay{position:fixed;inset:0;z-index:80;background:rgba(10,37,64,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
   .modal-overlay.open{display:flex}
@@ -965,12 +1000,23 @@
 </div></section>
 
 <!-- ============ 6. SPEAKERS ============ -->
-<section class="section why" id="speakers" style="padding-top: 80px; padding-bottom: 80px;">
-  <div class="why-blob-b"></div>
-  <div class="why-blob-r"></div>
+<section class="section why" id="speakers" style="padding-top: 80px; padding-bottom: 80px; overflow: visible;">
+  <div style="position:absolute; top:0; left:0; right:0; bottom:0; overflow:hidden; pointer-events:none; z-index:0;">
+    <div class="why-blob-b"></div>
+    <div class="why-blob-r"></div>
+  </div>
   <div class="wrap" style="position:relative; z-index:2;">
-    <div class="section-head reveal"><span class="eyebrow on-dark">Speakers</span><h2>Speakers</h2>
-      <p>30 senior People &amp; Talent leaders from HUL, Tata, Mahindra, ITC and 25+ more organisations.</p></div>
+    <div class="section-head reveal" style="display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
+      <span class="eyebrow on-dark" style="margin-bottom:0;">Speakers</span>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; width:100%;">
+        <h2 style="margin:0;">Speakers</h2>
+        <div class="sp-view-toggle">
+          <button class="sp-view-btn active" id="btnMultiView">Multiple Speakers</button>
+          <button class="sp-view-btn" id="btnSingleView">Single Speaker</button>
+        </div>
+      </div>
+      <p id="spGridDesc" style="margin:0;">30 senior People &amp; Talent leaders from HUL, Tata, Mahindra, ITC and 25+ more organisations.</p>
+    </div>
     <div class="sp-grid" id="spGrid">
       <div class="sp-card reveal" data-bio="Details coming soon." data-li="#"><div class="sp-av"><img src="assets/events/speakers/Shweta_Parekh.png" alt="Preeti Ahuja" style="width:100%; height:100%; object-fit:cover;"></div><h4>Preeti Ahuja</h4><div class="role">Chief People Officer</div><div class="co">Husk Power</div></div>
       <div class="sp-card reveal" data-bio="Details coming soon." data-li="#"><div class="sp-av"><img src="assets/events/speakers/Shweta_Parekh.png" alt="Smrita Dubey" style="width:100%; height:100%; object-fit:cover;"></div><h4>Smrita Dubey</h4><div class="role">Chief People Officer</div><div class="co">InfoCepts</div></div>
@@ -1002,6 +1048,66 @@
     </div>
     <div class="sp-pagination" id="spPagination">
     </div>
+    
+    <div class="sp-single-view" id="spSingleView">
+      <div class="sp-sv-header" style="box-sizing: border-box; width: 100%; border-top-left-radius: 16px; border-top-right-radius: 16px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 4px solid var(--red); color: #fff; padding: 20px 40px; font-size: 1.15rem; font-family: 'Space Grotesk', sans-serif; font-weight: 600; display: block;">
+        Program Led by Renowned Experts : Mr. Badal Roy
+      </div>
+      <div class="sp-single-content">
+        <div class="sp-single-left">
+          <div class="sp-single-av">
+            <img src="assets/events/speakers/Karan_Bakshi.png" alt="Mr. Badal Roy">
+          </div>
+          <h4 style="margin-bottom: 10px;">Mr. Badal Roy</h4>
+          <a href="#" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; background:var(--blue); color:#fff; border-radius:50%; text-decoration:none;" aria-label="LinkedIn Profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        </div>
+        <div class="sp-single-right">
+          <div class="sp-single-titles">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="color: var(--red); margin-top: 2px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <div style="font-size: 0.92rem; line-height: 1.5; color: var(--carbon);">
+                <strong style="color: var(--navy); font-size: 1.1rem;">Former Executive Director</strong><br>
+                Oil and Natural Gas Corporation Limited (ONGC)
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="color: var(--red); margin-top: 2px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <div style="font-size: 0.92rem; line-height: 1.5; color: var(--carbon);">
+                <strong style="color: var(--navy); font-size: 1.1rem;">Former Chief Safety Advisor</strong><br>
+                Directorate General of Hydrocarbons (Under Ministry of Petroleum and Natural Gas, Government of India)
+              </div>
+            </div>
+          </div>
+          
+          <div class="sp-single-topics">
+            <h5>Key Topics Covered</h5>
+            <ul>
+              <li>Safety Culture and Leadership in Offshore Operations</li>
+              <li>Regulatory Compliance and Policy Frameworks</li>
+              <li>Best Practices in Upstream HSE Management</li>
+              <li>Risk Assessment and Emergency Response</li>
+            </ul>
+          </div>
+          
+          <div class="sp-single-bio">
+            <p>Mr. Badal Roy is a distinguished <strong>Chemical Engineer</strong> with over <strong>44 years of professional experience</strong>, including <strong>more than four decades in the Oil &amp; Gas industry</strong> across upstream operations and Health, Safety &amp; Environment (HSE) management. He holds an <strong>International Diploma in Safety Management</strong> from the British Safety Council.</p>
+            
+            <div id="spBioExtra" style="display: none;">
+              <p>He spent the early part of his career in <strong>upstream oil and gas production operations</strong>, working both <strong>onshore and offshore</strong>, where he gained extensive experience in managing complex systems and processes related to hydrocarbon handling and production. Over time, he specialized in <strong>Health, Safety and Environment (HSE)</strong> and became one of the <strong>most respected safety professionals in India's petroleum sector.</strong></p>
+              <p>Mr. Roy Superannuated from ONGC as <strong>Executive Director</strong> after <strong>36 years of distinguished service</strong>. In his final assignment, he served as <strong>Head of Offshore Safety</strong>, with overall responsibility for <strong>HSE oversight of ONGC's offshore operations across both the western and eastern coasts of India.</strong></p>
+            </div>
+            
+            <a href="javascript:void(0)" class="sp-read-more" id="btnBioMore" style="margin-top: 18px;">Read more <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </section>
 
@@ -2204,6 +2310,50 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = '';
     });
   });
+
+  // Toggle speaker views
+  const btnMultiView = document.getElementById('btnMultiView');
+  const btnSingleView = document.getElementById('btnSingleView');
+  const spGrid = document.getElementById('spGrid');
+  if(btnMultiView && btnSingleView) {
+    const singleViewEl = document.getElementById('spSingleView');
+    const gridDescEl = document.getElementById('spGridDesc');
+    const paginationEl = document.getElementById('spPagination');
+
+    btnMultiView.addEventListener('click', () => {
+      btnMultiView.classList.add('active');
+      btnSingleView.classList.remove('active');
+      spGrid.style.display = 'grid';
+      if(paginationEl) paginationEl.style.display = 'flex';
+      if(singleViewEl) singleViewEl.classList.remove('active');
+      if(gridDescEl) gridDescEl.style.display = 'block';
+    });
+    btnSingleView.addEventListener('click', () => {
+      btnSingleView.classList.add('active');
+      btnMultiView.classList.remove('active');
+      spGrid.style.display = 'none';
+      if(paginationEl) paginationEl.style.display = 'none';
+      if(singleViewEl) singleViewEl.classList.add('active');
+      if(gridDescEl) gridDescEl.style.display = 'block';
+    });
+  }
+  
+  // Read more toggle
+  const btnBioMore = document.getElementById('btnBioMore');
+  const spBioExtra = document.getElementById('spBioExtra');
+  if(btnBioMore && spBioExtra) {
+    btnBioMore.addEventListener('click', () => {
+      if(spBioExtra.style.display === 'none') {
+        spBioExtra.style.display = 'block';
+        btnBioMore.classList.add('open');
+        btnBioMore.innerHTML = 'Read less <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      } else {
+        spBioExtra.style.display = 'none';
+        btnBioMore.classList.remove('open');
+        btnBioMore.innerHTML = 'Read more <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+    });
+  }
 
 </script>
 <script src="js%20scripts/footer-v2.js"></script>
