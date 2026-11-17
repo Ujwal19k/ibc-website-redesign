@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stacked Cards Animation Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#D12B1D; --red-dark:#A8190D;
+    --blue:#0060AB; --navy:#0A2540; --navy-2:#0E2E4F;
+    --carbon:#1B2430; --graphite:#4D5562; --slate:#828A96;
+    --mist:#FFFFFF; --chalk:#E6E9EE; --paper:#FFFFFF; --line:#E2E6EC;
+    --maxw:1200px; 
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--graphite);
+    background: var(--mist);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* Added padding so you can scroll to see the effect */
+    padding-bottom: 800px;
+    padding-top: 100px; 
+  }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; color: var(--carbon); font-weight: 500; letter-spacing: -.02em; line-height: 1.04; }
+  
+  /* Layout */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  .section { padding: 96px 0; }
+  
+  /* Headers */
+  .section-head { margin-bottom: 52px; }
+  .section-head h2 { font-size: clamp(2rem, 4vw, 2.9rem); margin-bottom: 12px; }
+  .section-head p { color: var(--graphite); font-size: 1.06rem; line-height: 1.6; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: 'Inter'; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+
+  /* Stacked Cards System */
+  .stack-wrap { position: relative; }
+  .stack-card { position: sticky; margin-bottom: 24px; border-radius: 24px; border: 1px solid rgba(20,30,45,0.085); box-shadow: none; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; will-change: transform, filter; transition: background 0.35s ease; }
+  .stack-card:last-child { margin-bottom: 0; }
+  
+  /* Inner content layout */
+  .stack-body { padding: 44px 48px; display: flex; flex-direction: column; justify-content: flex-start; position: relative; z-index: 1; }
+  .stack-card h3 { font-size: 1.5rem; margin-bottom: 12px; color: var(--carbon); }
+  .stack-card p { font-size: 1rem; color: var(--graphite); line-height: 1.55; max-width: 420px; }
+  
+  /* Icons & Badges */
+  .stack-card .ic { width: 50px; height: 50px; border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; transition: background .25s ease; }
+  .stack-card .ic svg { width: 24px; height: 24px; fill: none; stroke-width: 2; }
+  .stack-card .scale { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 600; margin-bottom: 14px; padding: 5px 12px; border-radius: 20px; align-self: flex-start; transition: background .25s ease, color .25s ease; }
+  
+  /* Bullets */
+  .stack-bullets { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .stack-bullets li { display: flex; align-items: flex-start; gap: 9px; font-size: .88rem; color: var(--graphite); line-height: 1.4; }
+  .stack-bullets li svg { width: 17px; height: 17px; flex: none; margin-top: 1px; }
+  
+  /* Image column */
+  .stack-img { position: relative; overflow: hidden; }
+  .stack-img img { max-width: none; object-fit: cover; display: block; position: absolute; top: 24px; left: 24px; width: calc(100% - 48px); height: calc(100% - 48px); border-radius: 16px; }
+  
+  /* Optional soft gradient overlay */
+  .stack-card::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.75; }
+
+  /* Card 1 - Orange Theme */
+  .stack-card:nth-child(1) { top: 140px; background: #FFF9F6; border-color: rgba(255,111,67,.28); }
+  .stack-card:nth-child(1)::before { background: radial-gradient(circle at 80% 20%, rgba(255, 111, 67, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(1) .ic { background: #FFEBE3; }
+  .stack-card:nth-child(1) .ic svg { stroke: #FF6F43; }
+  .stack-card:nth-child(1) .scale { background: rgba(255, 111, 67, 0.1); color: #FF6F43; }
+  .stack-card:nth-child(1) .stack-bullets svg { stroke: #FF6F43; }
+
+  /* Card 2 - Green Theme */
+  .stack-card:nth-child(2) { top: 156px; background: #F3FAF2; border-color: rgba(46,139,87,.25); }
+  .stack-card:nth-child(2)::before { background: radial-gradient(circle at 80% 20%, rgba(46, 139, 87, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(2) .ic { background: #E2F3E1; }
+  .stack-card:nth-child(2) .ic svg { stroke: #2E8B57; }
+  .stack-card:nth-child(2) .scale { background: rgba(46, 139, 87, 0.1); color: #2E8B57; }
+  .stack-card:nth-child(2) .stack-bullets svg { stroke: #2E8B57; }
+
+  /* Card 3 - Blue Theme */
+  .stack-card:nth-child(3) { top: 172px; background: #F0F7FD; border-color: rgba(0,96,171,.22); }
+  .stack-card:nth-child(3)::before { background: radial-gradient(circle at 80% 20%, rgba(0, 96, 171, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(3) .ic { background: #DCECF9; }
+  .stack-card:nth-child(3) .ic svg { stroke: var(--blue); }
+  .stack-card:nth-child(3) .scale { background: rgba(0, 96, 171, 0.1); color: var(--blue); }
+  .stack-card:nth-child(3) .stack-bullets svg { stroke: var(--blue); }
+
+  /* Card 4 - Purple Theme */
+  .stack-card:nth-child(4) { top: 188px; background: #F7F4FD; border-color: rgba(111,66,193,.22); }
+  .stack-card:nth-child(4)::before { background: radial-gradient(circle at 80% 20%, rgba(111, 66, 193, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(4) .ic { background: #ECE5FA; }
+  .stack-card:nth-child(4) .ic svg { stroke: #6F42C1; }
+  .stack-card:nth-child(4) .scale { background: rgba(111, 66, 193, 0.1); color: #6F42C1; }
+  .stack-card:nth-child(4) .stack-bullets svg { stroke: #6F42C1; }
+
+  /* Card 5 - Yellow/Gold Theme */
+  .stack-card:nth-child(5) { top: 204px; background: #FFFAF0; border-color: rgba(212,160,23,.25); }
+  .stack-card:nth-child(5)::before { background: radial-gradient(circle at 80% 20%, rgba(212, 160, 23, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(5) .ic { background: #FFF2D6; }
+  .stack-card:nth-child(5) .ic svg { stroke: #D4A017; }
+  .stack-card:nth-child(5) .scale { background: rgba(212, 160, 23, 0.1); color: #D4A017; }
+  .stack-card:nth-child(5) .stack-bullets svg { stroke: #D4A017; }
+
+  /* Card 6 - Red Theme */
+  .stack-card:nth-child(6) { top: 220px; background: #FFF3F5; border-color: rgba(209,43,29,.22); }
+  .stack-card:nth-child(6)::before { background: radial-gradient(circle at 80% 20%, rgba(209, 43, 29, 0.16) 0%, transparent 60%); }
+  .stack-card:nth-child(6) .ic { background: #FFE0E5; }
+  .stack-card:nth-child(6) .ic svg { stroke: var(--red); }
+  .stack-card:nth-child(6) .scale { background: rgba(209, 43, 29, 0.1); color: var(--red); }
+  .stack-card:nth-child(6) .stack-bullets svg { stroke: var(--red); }
+
+  /* Mobile Responsive */
+  @media(max-width: 780px) {
+    .stack-card { position: relative; grid-template-columns: 1fr; min-height: 0; }
+    .stack-img { height: 220px; order: -1; }
+    .stack-img img { top: 20px; left: 20px; width: calc(100% - 40px); height: calc(100% - 40px); }
+    .stack-body { padding: 32px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>One partner for every business gathering</h2>
+      <p>From large-scale awards to focused boardroom roundtables, we design and deliver experiences that create measurable value.</p>
+    </div>
+  </div>
+  
+  <div class="wrap">
+    <div class="stack-wrap">
+      
+      <!-- Card 1 -->
+      <div class="stack-card" style="z-index:1">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+          <span class="scale">1,500+ delivered</span>
+          <h3>Conferences &amp; Awards</h3>
+          <p>Industry-defining events that recognize excellence and convene thousands.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Industry-leading speaker lineups</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Award ceremonies &amp; recognition</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>National media coverage</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/Conferences%20&amp;%20Awards.png" alt="Conferences &amp; Awards"></div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="stack-card" style="z-index:2">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zM8 21h8M12 17v4"/></svg></div>
+          <span class="scale">5,000+ delivered</span>
+          <h3>Workshops &amp; Seminars</h3>
+          <p>Practical, expert-led sessions that build real capability.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Hands-on, expert-led sessions</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Certificates of participation</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Interactive Q&amp;A formats</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/Workshops%20&amp;%20Seminars.png" alt="Workshops &amp; Seminars"></div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="stack-card" style="z-index:3">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
+          <span class="scale">50+ delivered</span>
+          <h3>Bespoke &amp; Roundtables</h3>
+          <p>Intimate, high-trust CXO discussions on the issues that matter most.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Closed-door CXO discussions</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Customized agenda design</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Confidential, high-trust setting</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/Bespoke%20&amp;%20Roundtables.png" alt="Bespoke &amp; Roundtables"></div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="stack-card" style="z-index:4">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <span class="scale">Full-service</span>
+          <h3>Event Planning &amp; Management</h3>
+          <p>End-to-end execution, handled with precision.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Venue &amp; logistics handled</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>On-ground execution team</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>End-to-end vendor coordination</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/Event%20Planning%20&amp;%20Management.png" alt="Event Planning &amp; Management"></div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="stack-card" style="z-index:5">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
+          <span class="scale">3,500+ speakers</span>
+          <h3>Speaking &amp; Sponsorship</h3>
+          <p>A platform to reach the right decision-makers.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Curated speaker placements</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Branded sponsorship packages</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Direct decision-maker access</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/Speaking%20&amp;%20Sponsorship.png" alt="Speaking &amp; Sponsorship"></div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="stack-card" style="z-index:6">
+        <div class="stack-body">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7zM1 5h15v14H1z"/></svg></div>
+          <span class="scale">250+ programs</span>
+          <h3>In-house Training &amp; Webinars</h3>
+          <p>Tailored corporate programs at your site, and expert insight anywhere.</p>
+          <ul class="stack-bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Delivered at your location</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Tailored to your team's needs</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Live &amp; on-demand formats</li>
+          </ul>
+        </div>
+        <div class="stack-img"><img src="../../assets/Services/In-house%20Training%20&amp;%20Webinars.png" alt="In-house Training &amp; Webinars"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Animation Logic -->
+<script>
+  // Services stacking cards — progressive scale down and shift up as cards stack on top
+  (() => {
+    const cards = [...document.querySelectorAll('.stack-card')];
+    if (!cards.length) return;
+    
+    function onScroll() {
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        // Uses the 'top' sticky offset from CSS
+        const stickyTop = parseInt(window.getComputedStyle(card).top) || 110;
+        
+        if (rect.top <= stickyTop + 2) {
+          let stuckCount = 0;
+          let activeProgress = 0;
+          
+          for (let j = index + 1; j < cards.length; j++) {
+            const nextRect = cards[j].getBoundingClientRect();
+            const nextStickyTop = parseInt(window.getComputedStyle(cards[j]).top) || 110;
+            
+            if (nextRect.top <= nextStickyTop + 2) {
+              stuckCount++;
+            } else {
+              const distToStick = nextRect.top - nextStickyTop;
+              if (distToStick < 150) {
+                activeProgress = 1 - (distToStick / 150);
+              }
+              break;
+            }
+          }
+          
+          // depth determines how far back this card is pushed
+          const depth = stuckCount + activeProgress;
+          const scale = 1 - (depth * 0.02); // scale down by 2% per stacked card
+          const translate = depth * -6; // shift up by 6px per stacked card
+          card.style.transform = `scale(${scale}) translateY(${translate}px)`;
+        } else {
+          card.style.transform = 'scale(1) translateY(0)';
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Initialize immediately
+    onScroll();
+  })();
+</script>
+</body>
+</html>
