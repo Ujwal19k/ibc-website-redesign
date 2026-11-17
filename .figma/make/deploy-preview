@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+build_dir=".figma/make/deploy-preview-dist"
+rm -rf "$build_dir"
+mkdir -p "$build_dir"
+cp -- ./*.html ./*.css "$build_dir/"
+cp -R -- assets components "js scripts" "$build_dir/"
+# Preserve the imported HTML's lowercase path on case-sensitive hosts.
+mkdir -p "$build_dir/assets/Client logos"
+cp -R -- "assets/Client Logos/." "$build_dir/assets/Client logos/"
+
+[[ -d "$build_dir" ]] || {
+  echo "Expected build output at $build_dir" >&2
+  exit 1
+}
+figma make deploy-preview --build-dir "$build_dir"

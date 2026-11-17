@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# This imported site has no package manifest or install-time dependencies.
+exit 0

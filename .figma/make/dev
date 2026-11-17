@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+serve_dir=".figma/make/dev-root"
+rm -rf "$serve_dir"
+mkdir -p "$serve_dir/assets"
+
+for file in ./*.html ./*.css; do
+  ln -s "$PWD/${file#./}" "$serve_dir/$(basename "$file")"
+done
+for directory in components "js scripts"; do
+  ln -s "$PWD/$directory" "$serve_dir/$directory"
+done
+for asset in assets/*; do
+  ln -s "$PWD/$asset" "$serve_dir/assets/$(basename "$asset")"
+done
+# Preserve the imported HTML's lowercase path on case-sensitive filesystems.
+ln -s "$PWD/assets/Client Logos" "$serve_dir/assets/Client logos"
+
+exec python3 -m http.server "$PORT" --bind 0.0.0.0 --directory "$serve_dir"
